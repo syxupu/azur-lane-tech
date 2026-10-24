@@ -1,0 +1,14 @@
+{
+  "name": "azur-lane-tech-checklist",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/server.mjs --open",
+    "dev": "node scripts/server.mjs",
+    "update-data": "node scripts/update-data.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" }
+}

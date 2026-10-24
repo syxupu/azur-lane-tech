@@ -1,0 +1,12 @@
+node_modules/
+wiki-source.html
+*.tmp
+test-results/
+/dist/
+/.pages-publish/
+/screenshots/
+/backups/
+港区科技备份-*.json
+*.local.json
+.env
+.env.*
