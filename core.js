@@ -1,4 +1,5 @@
 export const STATUS = { pending: '待练级', done: '已达120级', unowned: '未拥有' };
+const STATUS_ORDER = { pending: 0, unowned: 1, done: 2 };
 export const DEFAULT_FILTERS = { target: '', stat: '', status: '', hull: '', faction: '', rarity: '', search: '', sort: 'id' };
 export const HULLS = ['驱逐','轻巡','重巡','超巡','战巡','战列','航战','航母','轻航','重炮','维修','潜艇','潜母','运输','风帆','风帆S','风帆V','风帆M'];
 export const STATS = ['装填','航空','炮击','命中','雷击','机动','防空','耐久','反潜'];
@@ -25,7 +26,8 @@ export function filterShips(ships, statuses, filters) {
     s.bonuses.some(b => (!filters.target || b.targets.includes(filters.target)) && (!filters.stat || b.stat === filters.stat))
   );
   const idOrder = (a, b) => a.id.localeCompare(b.id, 'en', { numeric: true });
-  result.sort(filters.sort === 'name' ? (a,b) => a.name.localeCompare(b.name, 'zh-CN') : filters.sort === 'bonus' ? (a,b) => bonusValue(b, filters.target, filters.stat) - bonusValue(a, filters.target, filters.stat) || idOrder(a,b) : idOrder);
+  const withinStatus = filters.sort === 'name' ? (a,b) => a.name.localeCompare(b.name, 'zh-CN') || idOrder(a,b) : filters.sort === 'bonus' ? (a,b) => bonusValue(b, filters.target, filters.stat) - bonusValue(a, filters.target, filters.stat) || idOrder(a,b) : idOrder;
+  result.sort((a,b) => (STATUS_ORDER[statuses[a.id]] ?? 0) - (STATUS_ORDER[statuses[b.id]] ?? 0) || withinStatus(a,b));
   return result;
 }
 
