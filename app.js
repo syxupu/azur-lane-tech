@@ -1,6 +1,7 @@
 import { STATUS, DEFAULT_FILTERS, HULLS, STATS, reconcile, filterShips, counts, summarize, validateBackup, makeBackup } from './core.js';
 import { icon } from './ui-icons.js';
 import { normalizeTargets, addTarget, removeTarget, targetKey } from './targets.js';
+import { createListMotion } from './list-motion.js';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -9,6 +10,7 @@ const PREFS = 'azur-tech:preferences:v1';
 const PAGE_SIZE = 60;
 const mobile = matchMedia('(max-width: 1023px)');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const listMotion = createListMotion($('ship-list'), reducedMotion);
 let ships = [], statuses = {}, filters = { ...DEFAULT_FILTERS }, view = 'grid', page = 1;
 let selected = new Set(), previous = null, importData = null, filtered = [], ready = false;
 let toastTimer, announceTimer;
@@ -183,6 +185,7 @@ function tableRow(s) {
   return `<tr data-card="${s.id}" class="${statuses[s.id]} ${selected.has(s.id)?'selected':''}"><td class="ship-id" data-label="图鉴编号">${selectControl(s)}${esc(s.id)}<span class="selected-mark" aria-hidden="true">${icon('check')}已选</span></td><td class="row-identity" data-label="舰船"><div class="table-identity">${portrait(s)}<div><a class="ship-name" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.name)}</a><div class="ship-meta"><span class="hull-label">${hullIcon(s.hull)}${esc(s.hull)}</span>${s.aliases.length ? ' · '+esc(s.aliases.join(' / ')) : ''}</div></div></div></td><td class="row-faction" data-label="阵营 / 稀有度"><div>${esc(s.faction)}</div><span class="ship-meta">${esc(s.rarity)}</span></td><td class="row-bonus" data-label="120级加成">${bonuses(s)}</td><td class="row-status" data-label="练级状态">${statusSelect(s)}</td></tr>`;
 }
 function renderList() {
+  listMotion.stop();
   const visible = filtered.slice((page-1)*PAGE_SIZE,page*PAGE_SIZE);
   $('ship-list').className = view === 'grid' ? 'ship-grid' : 'ship-table-wrap';
   $('ship-list').setAttribute('aria-busy', 'false');
@@ -223,13 +226,15 @@ function restoreFocus(bookmark) {
   const target = nodes.find(el => el.getAttribute(bookmark.type) === bookmark.id) || nodes[Math.min(bookmark.index,nodes.length-1)] || $('list-title');
   target.focus({ preventScroll: true });
 }
-function render() {
+function render({ animate = false } = {}) {
+  const positions = animate ? listMotion.capture() : null;
   const bookmark = focusBookmark();
   filtered = filterShips(ships,statuses,filters);
   page = Math.max(1,Math.min(page,Math.ceil(filtered.length/PAGE_SIZE)||1));
   renderOverview(); renderFilters(); renderList();
   $('undo').disabled = previous === null;
   restoreFocus(bookmark);
+  listMotion.play(positions);
 }
 function changeStatuses(ids, state) {
   if (!ready || !Object.hasOwn(STATUS,state)) return;
@@ -238,8 +243,8 @@ function changeStatuses(ids, state) {
   const fromBatch = Boolean(document.activeElement?.closest('#batch-bar'));
   previous = { ...statuses };
   for (const id of changes) statuses[id] = state;
-  selected.clear(); saveProgress(); render();
-  if (fromBatch) { $('list-title').focus({ preventScroll: true }); scrollToList(); }
+  selected.clear(); saveProgress(); render({animate: true});
+  if (fromBatch) $('list-title').focus({ preventScroll: true });
   toast(`已将 ${changes.length} 艘舰船标记为${STATUS[state]}。可撤销本次修改。`);
 }
 function exportBackup() {
@@ -309,7 +314,7 @@ $('reset').addEventListener('click', () => setFilters({...DEFAULT_FILTERS}));
 $('select-all').addEventListener('change', () => { selected = $('select-all').checked ? new Set(filtered.map(s=>s.id)) : new Set(); syncSelection(); announce(`已选择 ${selected.size} 艘舰船，包含当前筛选的所有分页。`); });
 $('clear-selection').addEventListener('click', () => { selected.clear(); syncSelection(); $('select-all').focus({preventScroll:true}); scrollToList(); announce('已取消全部选择。'); });
 $('undo').addEventListener('click', () => {
-  if (previous) { statuses = previous; previous = null; selected.clear(); saveProgress(); render(); $('list-title').focus({preventScroll:true}); toast('已恢复上一次修改前的记录。'); }
+  if (previous) { statuses = previous; previous = null; selected.clear(); saveProgress(); render({animate: true}); $('list-title').focus({preventScroll:true}); toast('已恢复上一次修改前的记录。'); }
 });
 for (const v of ['grid','table']) $(`${v}-view`).addEventListener('click', () => { if (!ready) return; view = v; syncControls(); savePrefs(); renderFilters(); renderList(); announce(`已切换到${v==='grid'?'头像网格':'紧凑表格'}。`); });
 $('dismiss-onboarding').addEventListener('click', () => { $('onboarding').hidden = true; savePrefs(); $('list-title').focus({preventScroll:true}); });
