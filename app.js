@@ -159,7 +159,7 @@ function renderFilters() {
   for (const key of Object.keys(c)) $(`status-count-${key}`).textContent = c[key];
   const title = filters.target && filters.stat ? `${filters.target}${filters.stat}` : '舰船清单';
   $('list-title').innerHTML = `${esc(title)} <span id="result-count">${filtered.length}<small> 艘</small></span>`;
-  $('list-subtitle').textContent = `点击${view === 'grid' ? '卡片' : '整行'}选择，再次点击取消；舰名可打开百科。`;
+  $('list-subtitle').textContent = `待练级 → 未拥有 → 已达120级。点击${view === 'grid' ? '卡片' : '整行'}选择，再次点击取消；舰名可打开百科。`;
   $('selection-scope').textContent = `（${filtered.length}艘，含其他页）`;
   $('apply-filters').textContent = `查看 ${filtered.length} 艘舰船`;
 }

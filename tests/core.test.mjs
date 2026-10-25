@@ -62,6 +62,37 @@ test('目标加成排序、中文名称排序和筛选组合',()=>{
   const named=filterShips(ships,state(),filter({search:'meta',sort:'name'}));
   assert.ok(named.every((s,i)=>!i||named[i-1].name.localeCompare(s.name,'zh-CN')<=0));
 });
+test('所有排序模式均先排列待练级、未拥有、已达120级，同状态内保持所选排序',()=>{
+  const sample=ships.filter(s=>['070','072','076','079','142','226'].includes(s.id));
+  const statuses={'070':'done','072':'unowned','076':'pending','079':'unowned','142':'pending','226':'done'};
+  for(const sort of ['id','name','bonus']) {
+    const options=filter({target:'航母',stat:'装填',sort});
+    const result=filterShips(sample,statuses,options);
+    assert.deepEqual(result.map(s=>statuses[s.id]),['pending','pending','unowned','unowned','done','done']);
+    for(const status of ['pending','unowned','done']) {
+      const group=result.filter(s=>statuses[s.id]===status);
+      if(sort==='id') assert.ok(group[0].id.localeCompare(group[1].id,'en',{numeric:true})<0);
+      if(sort==='name') assert.ok(group[0].name.localeCompare(group[1].name,'zh-CN')<0);
+      if(sort==='bonus') assert.ok(group[0].bonuses[0].value>=group[1].bonuses[0].value);
+      assert.deepEqual(filterShips(sample,statuses,{...options,status}),group);
+    }
+  }
+});
+test('修改、批量修改、撤销与备份恢复后重新排序；未初始化记录视为待练级',()=>{
+  const sample=ships.filter(s=>['070','072','076','079'].includes(s.id));
+  const statuses={'070':'pending','072':'pending','076':'pending'};
+  const ids=record=>filterShips(sample,record,filter({})).map(s=>s.id);
+  statuses['070']='done';
+  assert.deepEqual(ids(statuses),['072','076','079','070']);
+  statuses['072']='unowned';
+  assert.deepEqual(ids(statuses),['076','079','072','070']);
+  const previous={...statuses};
+  for(const id of ['076','079']) statuses[id]='done';
+  assert.deepEqual(ids(statuses),['072','070','076','079']);
+  assert.deepEqual(ids(previous),['076','079','072','070']);
+  assert.deepEqual(ids(validateBackup(JSON.parse(JSON.stringify(makeBackup(previous)))).statuses),ids(previous));
+  assert.deepEqual(sample.map(s=>s.id),['070','072','076','079']);
+});
 test('备份往返不丢状态或未知ID；名单新增只补待练级',()=>{
   const statuses=state();statuses['070']='done';statuses['072']='unowned';statuses.Future001='done';
   const backup=validateBackup(JSON.parse(JSON.stringify(makeBackup(statuses))));
