@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const runtimeFiles = [
   'index.html', 'style.css', 'settings.css', 'app.js', 'core.js', 'targets.js',
-  'ui-icons.js', 'theme.js', 'appearance.js', 'appearance-boot.js',
+  'ui-icons.js', 'theme.js', 'appearance.js', 'appearance-boot.js', 'list-motion.js',
   'data/ships.json', 'assets/hulls/manifest.json',
 ];
 

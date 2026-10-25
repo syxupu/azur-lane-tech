@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>重排动画浏览器回归检查</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  body {padding: 16px; min-height: 1100px;}
+  #fixture {max-width: 900px; margin: 16px 0;}
+  #fixture .ship-card {min-height: 100px; justify-content: center;}
+  #results {white-space: pre-wrap;}
+</style>
+<h1>重排动画浏览器回归检查</h1>
+<p>使用真实样式与浏览器动画引擎；不读取或修改用户存档。</p>
+<button id="run" class="button primary">运行检查</button>
+<div id="fixture"></div>
+<pre id="results" role="status">等待运行</pre>
+<script type="module">
+import {createListMotion} from '../list-motion.js';
+const list=document.querySelector('#fixture'), results=document.querySelector('#results');
+const preference=new EventTarget(); preference.matches=false;
+const motion=createListMotion(list,preference);
+// Seek the real browser animation timeline deterministically. Background tabs
+// may suspend wall-clock animation frames, so timer sleeps are not reliable QA.
+const advance=ms=>{for(const animation of document.getAnimations()){animation.pause();animation.currentTime=ms;}};
+async function finishAll(){
+  const animations=document.getAnimations();
+  for(const animation of animations)animation.finish();
+  await Promise.all(animations.map(animation=>animation.finished.catch(()=>{})));
+  await Promise.resolve();
+}
+const check=(condition,message)=>{if(!condition)throw new Error(message);};
+const rect=id=>list.querySelector(`[data-card="${id}"]`).getBoundingClientRect();
+const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+const clean=()=>!list.getAnimations({subtree:true}).length&&!document.querySelector('.ship-motion-exit,.ship-reordering');
+function draw(view,ids=['A','B','C','D']) {
+  list.className=view==='grid'?'ship-grid':'ship-table-wrap';
+  list.innerHTML=view==='grid'?ids.map(id=>`<article class="ship-card" data-card="${id}"><b>${id}</b><button data-select="${id}" id="select-${id}">选择 ${id}</button></article>`).join('')
+    :`<table class="ship-table"><tbody>${ids.map(id=>`<tr data-card="${id}"><td class="ship-id">${id}</td><td>舰船 ${id}</td><td>待练级</td><td><button data-select="${id}" id="select-${id}">选择 ${id}</button></td></tr>`).join('')}</tbody></table>`;
+}
+document.querySelector('#run').onclick=async()=>{
+  const button=document.querySelector('#run'); button.disabled=true;
+  results.textContent='运行中…'; let passed=0;
+  const pass=message=>{passed++;results.textContent+=`\n✓ ${message}`;};
+  try {
+    for(const view of ['grid','table']) {
+      draw(view); const start=rect('A'), before=motion.capture();
+      draw(view,['B','C','D','A']); const end=rect('A'); motion.play(before);
+      check(distance(rect('A'),start)<1,`${view}: 起点跳动`);
+      advance(90);
+      check(distance(rect('A'),start)>1&&distance(rect('A'),end)>1,`${view}: 缺少中间移动帧`);
+      await finishAll(); check(distance(rect('A'),end)<1&&clean(),`${view}: 未正确结束/清理`);
+      pass(`${view}: 起点连续、中间帧移动、结束位置正确`);
+
+      let snapshot=motion.capture(); draw(view); motion.play(snapshot); advance(70);
+      const interrupted=rect('A'); snapshot=motion.capture(); draw(view,['B','C','D','A']); motion.play(snapshot);
+      check(distance(rect('A'),interrupted)<1,`${view}: 连续操作回跳`);
+      motion.stop(); check(clean(),`${view}: 取消后残留动画`);
+      pass(`${view}: 连续操作衔接、切换视图可取消`);
+
+      snapshot=motion.capture(); draw(view,['C','D','A']); motion.play(snapshot);
+      const ghost=document.querySelector('.ship-motion-exit');
+      check(ghost?.inert&&ghost.getAttribute('aria-hidden')==='true',`${view}: 淡出副本可交互`);
+      check(!ghost.querySelector('[id],[data-card],[data-select]'),`${view}: 副本重复标识`);
+      await finishAll(); check(clean(),`${view}: 淡出后残留节点`);
+      pass(`${view}: 离开当前筛选/分页时淡出并清理`);
+
+      snapshot=motion.capture(); draw(view,[]); motion.play(snapshot);
+      check(document.querySelector('.ship-motion-exit'),`${view}: 全部离开时无淡出`);
+      await finishAll(); check(clean(),`${view}: 空清单仍残留动画`);
+      pass(`${view}: 批量移出全部结果`);
+    }
+    draw('grid'); preference.matches=true;
+    let snapshot=motion.capture(); draw('grid',['D','C','B','A']); motion.play(snapshot);
+    check(clean(),'减少动态效果时仍创建动画');
+    pass('减少动态效果：立即排列且不创建动画');
+    preference.matches=false; snapshot=motion.capture(); draw('grid'); motion.play(snapshot);
+    check(list.getAnimations({subtree:true}).length>0,'测试动画未启动');
+    preference.matches=true; preference.dispatchEvent(new Event('change'));
+    check(clean(),'切换减少动态效果后未停止动画');
+    pass('系统偏好变化：立即停止现有动画');
+    results.textContent+=`\n全部通过：${passed} 项；视口 ${innerWidth} × ${innerHeight}`;
+  } catch(error) {
+    results.textContent+=`\n失败：${error.message}\n${JSON.stringify({animations:list.getAnimations({subtree:true}).map(a=>({target:a.effect.target.outerHTML.slice(0,120),state:a.playState,time:a.currentTime})),ghosts:document.querySelectorAll('.ship-motion-exit').length,moving:document.querySelectorAll('.ship-reordering').length})}`;
+  }
+  finally { motion.stop(); preference.matches=false; button.disabled=false; }
+};
+</script>
+</html>

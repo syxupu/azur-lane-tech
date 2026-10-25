@@ -275,6 +275,10 @@ input[type="checkbox"] { width: 18px; height: 18px; margin: 0; flex-shrink: 0; a
 .ship-table tr:hover td { background: var(--hover); }
 .ship-table tr.selected, .ship-table tr.selected:hover td { background: var(--selected); }
 .ship-table tbody tr { position: relative; }
+.ship-reordering { z-index: 3; will-change: transform; }
+.ship-table tbody tr.ship-reordering { background: var(--surface); }
+.ship-motion-exit { position: fixed; z-index: 4; pointer-events: none; overflow: hidden; }
+.ship-motion-exit .ship-table { background: var(--surface); }
 .ship-table tr.selected td { border-top-color: var(--accent); }
 .ship-table td.ship-id { width: 64px; }
 .ship-table .portrait { width: 48px; height: 48px; }

@@ -16,7 +16,7 @@ async function fixture(t) {
   });
   const entries = [
     'index.html', 'style.css', 'settings.css', 'app.js', 'core.js', 'targets.js',
-    'ui-icons.js', 'theme.js', 'appearance.js', 'appearance-boot.js',
+    'ui-icons.js', 'theme.js', 'appearance.js', 'appearance-boot.js', 'list-motion.js',
   ];
   for (const path of entries) await writeFile(resolve(dir, path), await readFile(resolve(root, path)));
   for (const path of ['data', 'assets/ships', 'assets/hulls', 'screenshots', 'tests', 'dist']) await mkdir(resolve(dir, path), { recursive: true });
@@ -44,7 +44,7 @@ test('Pages打包仅包含运行文件和被引用素材，重新构建移除旧
   const dir = await fixture(t);
   const result = await buildPages(dir);
   assert.deepEqual(await listFiles(result.output), [...result.files].sort());
-  assert.equal(result.files.length, 15);
+  assert.equal(result.files.length, 16);
   for (const excluded of ['backup.json', '.env', 'screenshots/private.png', 'tests/example.mjs', 'assets/ships/unreferenced.jpg', 'old-backup.json']) {
     await assert.rejects(access(resolve(result.output, excluded)), { code: 'ENOENT' });
   }
