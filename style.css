@@ -12,6 +12,12 @@
   --accent-soft: #1b383f;
   --accent-strong: #7ce3d2;
   --gold: #f2ca8a;
+  --rarity-blue: #90c1ff;
+  --rarity-purple: #ccafff;
+  --rarity-gold: #f0cb79;
+  --rarity-pink: #f1a9c9;
+  --rarity-mint: #a1dbc5;
+  --rarity-rainbow: linear-gradient(110deg, var(--rarity-gold), var(--rarity-pink) 25%, var(--rarity-purple) 50%, var(--rarity-blue) 75%, var(--rarity-mint));
   --pending-bg: #393a34;
   --success: #7ce3d2;
   --success-bg: #21463f;
@@ -233,7 +239,23 @@ input[type="checkbox"] { width: 18px; height: 18px; margin: 0; flex-shrink: 0; a
 .ship-table .selected-mark { display: flex; margin-top: 4px; }
 .card-top { display: flex; align-items: center; gap: 8px; min-height: 48px; }
 .ship-id { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.rarity-label { font-size: 12px; color: var(--muted); margin-left: auto; }
+.rarity-label { display: inline-block; font-size: 12px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.card-top .rarity-label { margin-left: auto; }
+.rarity-label.rarity-稀有 { color: var(--rarity-blue); }
+.rarity-label.rarity-精锐 { color: var(--rarity-purple); }
+.rarity-label.rarity-超稀有, .rarity-label.rarity-最高方案 { color: var(--rarity-gold); }
+.rarity-label.rarity-海上传奇, .rarity-label.rarity-决战方案 { color: var(--rarity-gold); }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .rarity-label.rarity-海上传奇, .rarity-label.rarity-决战方案 {
+    background-image: var(--rarity-rainbow);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+@media (forced-colors: active) {
+  .rarity-label.rarity-海上传奇, .rarity-label.rarity-决战方案 { background-image: none; color: CanvasText; }
+}
 .ship-identity, .table-identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .ship-identity { min-height: 76px; padding-bottom: 12px; }
 .ship-identity > div, .table-identity > div { min-width: 0; }
@@ -241,9 +263,10 @@ input[type="checkbox"] { width: 18px; height: 18px; margin: 0; flex-shrink: 0; a
 .portrait { display: inline-flex; position: relative; align-items: center; justify-content: center; width: 64px; height: 64px; flex-shrink: 0; border-radius: 8px; border: 1px solid #879aae; background: #344c62; overflow: hidden; }
 .portrait img { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; }
 .portrait-fallback { position: absolute; inset: 0; display: grid; place-items: center; color: #f1f6fc; font-size: 18px; }
-.portrait.rarity-超稀有, .portrait.rarity-最高方案 { border-color: #e7c27d; background: #665437; }
-.portrait.rarity-精锐 { border-color: #ba9ae7; background: #584e6f; }
-.portrait.rarity-海上传奇, .portrait.rarity-决战方案 { border-color: #9de9dc; background: #3c645f; }
+.portrait.rarity-稀有 { border-color: var(--rarity-blue); background: #344c62; }
+.portrait.rarity-超稀有, .portrait.rarity-最高方案 { border-color: var(--rarity-gold); background: #665437; }
+.portrait.rarity-精锐 { border-color: var(--rarity-purple); background: #584e6f; }
+.portrait.rarity-海上传奇, .portrait.rarity-决战方案 { border: 2px solid transparent; background: linear-gradient(#3c645f, #3c645f) padding-box, var(--rarity-rainbow) border-box; }
 .ship-card.unowned .portrait img, tr.unowned .portrait img { filter: saturate(.5); }
 .ship-name { display: inline; font-size: 16px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
 .ship-name:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }

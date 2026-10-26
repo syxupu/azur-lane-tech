@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { PRESETS, DEFAULT_APPEARANCE, normalizeAppearance, resolveMode, getPalette, buildTheme, contrastRatio, relativeLuminance } from '../theme.js';
 
 const backgroundKeys = ['--bg','--surface','--surface-raised','--surface-inset','--topbar','--hover','--selected','--accent-soft','--pending-bg','--success-bg','--danger-bg','--warning-bg'];
-const foregroundKeys = ['--text','--muted','--accent','--accent-strong','--gold','--success','--danger','--warning-text'];
+const rarityKeys = ['--rarity-gold','--rarity-pink','--rarity-purple','--rarity-blue','--rarity-mint'];
+const foregroundKeys = ['--text','--muted','--accent','--accent-strong','--gold','--success','--danger','--warning-text',...rarityKeys];
 function assertReadable(theme) {
   for (const [name, value] of Object.entries(theme.tokens)) {
     assert.match(value, name === '--shadow' || name === '--backdrop' ? /^rgba\(/ : /^#[0-9a-f]{6}$/, name);
@@ -13,6 +14,13 @@ function assertReadable(theme) {
     assert.ok(theme.mode === 'dark' ? relativeLuminance(bg) <= 0.12 : relativeLuminance(bg) >= 0.65, `${theme.mode} ${background} must stay in mode`);
     for (const foreground of foregroundKeys) {
       assert.ok(contrastRatio(theme.tokens[foreground], bg) >= 4.5, `${foreground}/${background} must be readable`);
+    }
+    // Check intermediate sRGB colors too: gradient endpoints alone are not enough.
+    for (let index=1;index<rarityKeys.length;index++) for(let step=1;step<10;step++) {
+      const channels=key=>theme.tokens[key].slice(1).match(/../g).map(value=>parseInt(value,16));
+      const first=channels(rarityKeys[index-1]),last=channels(rarityKeys[index]);
+      const color='#'+first.map((value,channel)=>Math.round(value+(last[channel]-value)*step/10).toString(16).padStart(2,'0')).join('');
+      assert.ok(contrastRatio(color,bg)>=4.5,`rarity gradient/${background} must be readable`);
     }
     assert.ok(contrastRatio(theme.tokens['--control-border'], bg) >= 3, `control border/${background}`);
   }
