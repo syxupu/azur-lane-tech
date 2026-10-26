@@ -16,9 +16,9 @@ function assertReadable(theme) {
       assert.ok(contrastRatio(theme.tokens[foreground], bg) >= 4.5, `${foreground}/${background} must be readable`);
     }
     // Check intermediate sRGB colors too: gradient endpoints alone are not enough.
-    for (let index=1;index<rarityKeys.length;index++) for(let step=1;step<10;step++) {
+    for (let index=1;index<=rarityKeys.length;index++) for(let step=1;step<10;step++) {
       const channels=key=>theme.tokens[key].slice(1).match(/../g).map(value=>parseInt(value,16));
-      const first=channels(rarityKeys[index-1]),last=channels(rarityKeys[index]);
+      const first=channels(rarityKeys[index-1]),last=channels(rarityKeys[index % rarityKeys.length]);
       const color='#'+first.map((value,channel)=>Math.round(value+(last[channel]-value)*step/10).toString(16).padStart(2,'0')).join('');
       assert.ok(contrastRatio(color,bg)>=4.5,`rarity gradient/${background} must be readable`);
     }

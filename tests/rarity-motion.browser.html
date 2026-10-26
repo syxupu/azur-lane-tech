@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>稀有度流动效果 · 浏览器回归检查</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  body { margin: 0; padding: 24px; background: #edf2f7; color: #182636; }
+  h1 { font-size: 22px; margin-bottom: 16px; }
+  nav { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  button { background: #fff; color: #182636; }
+  #fixtures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 1100px; }
+  .fixture { padding: 20px; background: var(--bg); color: var(--text); border-radius: 12px; }
+  .fixture h2 { font-size: 16px; margin-bottom: 16px; }
+  .ship-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ship-card { padding-bottom: 12px; }
+  .ship-table { min-width: 0; width: 100%; margin-top: 20px; }
+  pre { white-space: pre-wrap; font: 14px/1.6 monospace; }
+  @media (max-width: 700px) { #fixtures { grid-template-columns: 1fr; } }
+</style>
+<h1>文字与头像边框：真实样式 / 浅色与深色 / 网格与表格</h1>
+<nav><button id="check">运行回归检查</button><button id="start">定格 0 毫秒</button><button id="later">定格 750 毫秒</button><button id="play">连续播放</button></nav>
+<div id="fixtures"></div>
+<pre id="result" role="status">正在加载真实舰船素材…</pre>
+<script type="module">
+  import { buildTheme } from '../theme.js';
+  const catalog = await fetch('../data/ships.json').then(r => r.json());
+  const ships = ['012', 'Plan010'].map(id => catalog.ships.find(ship => ship.id === id));
+  const portrait = ship => `<span class="portrait rarity-${ship.rarity}"><span class="portrait-fallback">${ship.name.slice(0,2)}</span><img src="../${ship.avatar}" alt="${ship.name}头像"></span>`;
+  const label = ship => `<span class="rarity-label rarity-${ship.rarity}">${ship.rarity}</span>`;
+  for (const mode of ['light', 'dark']) {
+    const section = document.createElement('section');
+    section.className = 'fixture';
+    for (const [key, value] of Object.entries(buildTheme({ mode, palette: 'blue' }).tokens)) section.style.setProperty(key, value);
+    section.innerHTML = `<h2>${mode === 'light' ? '浅色' : '深色'} · 海盐蓝</h2>
+      <div class="ship-grid">${ships.map(ship => `<article class="ship-card"><div class="card-top"><span class="ship-id">NO. ${ship.id}</span>${label(ship)}</div><div class="ship-identity">${portrait(ship)}<div>${ship.name}</div></div></article>`).join('')}</div>
+      <table class="ship-table"><tbody>${ships.map(ship => `<tr><td><div class="table-identity">${portrait(ship)}<div>${ship.name}</div></div></td><td>${label(ship)}</td></tr>`).join('')}</tbody></table>`;
+    document.querySelector('#fixtures').append(section);
+  }
+  await Promise.all([...document.images].map(img => img.decode()));
+  const result = document.querySelector('#result');
+  const labels = [...document.querySelectorAll('.rarity-label')];
+  const portraits = [...document.querySelectorAll('.portrait')];
+  const animations = () => document.getAnimations().filter(a => a.animationName?.startsWith('rarity-'));
+  const seek = ms => { for (const a of animations()) { a.pause(); a.currentTime = ms; } };
+  const rect = element => { const {x,y,width,height} = element.getBoundingClientRect(); return JSON.stringify({x,y,width,height}); };
+  function sample() {
+    return {
+      text: labels.map(el => getComputedStyle(el).backgroundPosition),
+      border: portraits.map(el => getComputedStyle(el, '::before').transform),
+      layout: [...labels, ...portraits, ...document.images].map(rect),
+      imageTransforms: [...document.images].map(el => getComputedStyle(el).transform),
+    };
+  }
+  const assert = (condition, message) => { if (!condition) throw new Error(message); };
+  document.querySelector('#check').onclick = () => {
+    try {
+      if (matchMedia('(prefers-reduced-motion: reduce), (forced-colors: active)').matches) {
+        assert(animations().length === 0, '无障碍模式下应禁用装饰动画');
+        result.textContent = '通过：减少动态效果 / 强制颜色模式使用静态效果。';
+        return;
+      }
+      assert(animations().length === labels.length + portraits.length, '每个文字和边框都应有动画');
+      seek(0);
+      const start = sample();
+      seek(750);
+      const later = sample();
+      assert(start.text.every((p,i) => p !== later.text[i]), '所有文字渐变应实际位移');
+      assert(start.border.every((p,i) => p !== later.border[i]), '所有头像边框应实际旋转');
+      assert(JSON.stringify(start.layout) === JSON.stringify(later.layout), '文字、头像和照片的位置与大小应保持稳定');
+      assert(later.imageTransforms.every(p => p === 'none'), '照片本身不能旋转');
+      assert(labels.every(el => getComputedStyle(el).color === 'rgba(0, 0, 0, 0)'), '文字必须正确裁切渐变');
+      assert(portraits.every(el => getComputedStyle(el).overflow === 'hidden'), '边框不能溢出头像');
+      result.textContent = `通过：${labels.length} 处文字与 ${portraits.length} 处边框在 750 毫秒内产生变化；浅色/深色、网格/表格全部通过；照片和文字位置稳定。\n文字位移：${later.text[0]}；边框变换：${later.border[0]}`;
+    } catch (error) { result.textContent = `失败：${error.message}`; }
+  };
+  document.querySelector('#start').onclick = () => { seek(0); result.textContent = '已定格：0 毫秒'; };
+  document.querySelector('#later').onclick = () => { seek(750); result.textContent = '已定格：750 毫秒'; };
+  document.querySelector('#play').onclick = () => { for (const a of animations()) a.play(); result.textContent = '正在连续播放：文字 3 秒一轮，边框 4 秒一轮。'; };
+  result.textContent = '素材已加载，可运行检查或比较两个定格画面。';
+</script>
+</html>
