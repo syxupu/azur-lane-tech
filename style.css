@@ -266,20 +266,56 @@ input[type="checkbox"] { width: 18px; height: 18px; margin: 0; flex-shrink: 0; a
 .portrait.rarity-稀有 { border-color: var(--rarity-blue); background: #344c62; }
 .portrait.rarity-超稀有, .portrait.rarity-最高方案 { border-color: var(--rarity-gold); background: #665437; }
 .portrait.rarity-精锐 { border-color: var(--rarity-purple); background: #584e6f; }
-.portrait.rarity-海上传奇, .portrait.rarity-决战方案 { border: 2px solid transparent; background: linear-gradient(#3c645f, #3c645f) padding-box, var(--rarity-rainbow) border-box; }
-/* An 8-second round trip makes the gradient flow visible without moving the image or text. */
-@keyframes rarity-flow {
+.portrait:is(.rarity-海上传奇, .rarity-决战方案) {
+  border: 0;
+  padding: 3px;
+  isolation: isolate;
+  background: var(--rarity-rainbow);
+}
+.portrait:is(.rarity-海上传奇, .rarity-决战方案)::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(var(--rarity-gold), var(--rarity-pink), var(--rarity-purple), var(--rarity-blue), var(--rarity-mint), var(--rarity-gold));
+  pointer-events: none;
+}
+.portrait:is(.rarity-海上传奇, .rarity-决战方案) img {
+  z-index: 1;
+  border-radius: 5px;
+}
+.portrait:is(.rarity-海上传奇, .rarity-决战方案) .portrait-fallback {
+  z-index: 1;
+  inset: 3px;
+  border-radius: 5px;
+  background: #3c645f;
+}
+/* Two identical color cycles make the text loop seamless. Only the border
+   layer rotates: the portrait, text position and brightness remain steady. */
+@keyframes rarity-text-flow {
   from { background-position: 0% 50%; }
-  to { background-position: 100% 50%; }
+  to { background-position: -100% 50%; }
+}
+@keyframes rarity-border-flow {
+  to { transform: rotate(1turn); }
 }
 @media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
-  .rarity-label:is(.rarity-海上传奇, .rarity-决战方案) { background-size: 160% 100%; }
-  .portrait:is(.rarity-海上传奇, .rarity-决战方案) { background-size: 100% 100%, 160% 100%; }
-  .rarity-label:is(.rarity-海上传奇, .rarity-决战方案),
-  .portrait:is(.rarity-海上传奇, .rarity-决战方案) {
-    background-repeat: no-repeat;
-    animation: rarity-flow 4s ease-in-out infinite alternate;
+  .rarity-label:is(.rarity-海上传奇, .rarity-决战方案) {
+    background-image: linear-gradient(90deg,
+      var(--rarity-gold) 0%, var(--rarity-pink) 10%, var(--rarity-purple) 20%,
+      var(--rarity-blue) 30%, var(--rarity-mint) 40%, var(--rarity-gold) 50%,
+      var(--rarity-pink) 60%, var(--rarity-purple) 70%, var(--rarity-blue) 80%,
+      var(--rarity-mint) 90%, var(--rarity-gold) 100%);
+    background-size: 200% 100%;
+    background-repeat: repeat-x;
+    animation: rarity-text-flow 3s linear infinite;
   }
+  .portrait:is(.rarity-海上传奇, .rarity-决战方案)::before {
+    animation: rarity-border-flow 4s linear infinite;
+  }
+}
+@media (forced-colors: active) {
+  .portrait:is(.rarity-海上传奇, .rarity-决战方案) { outline: 1px solid CanvasText; }
+  .portrait:is(.rarity-海上传奇, .rarity-决战方案)::before { display: none; }
 }
 .ship-card.unowned .portrait img, tr.unowned .portrait img { filter: saturate(.5); }
 .ship-name { display: inline; font-size: 16px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
