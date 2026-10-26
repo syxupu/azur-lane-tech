@@ -168,6 +168,9 @@ function renderFilters() {
 function portrait(s) {
   return `<span class="portrait rarity-${esc(s.rarity)}"><span class="portrait-fallback" aria-hidden="true">${esc(s.name.slice(0,2))}</span><img src="${esc(s.avatar)}" alt="${esc(s.name)}头像" loading="lazy" decoding="async" width="64" height="64"></span>`;
 }
+function rarityLabel(s) {
+  return `<span class="rarity-label rarity-${esc(s.rarity)}">${esc(s.rarity)}</span>`;
+}
 function bonuses(s) {
   return s.bonuses.map(b => `<span class="bonus"><span class="bonus-targets">${esc(b.targets.join(' / '))}</span><strong>${esc(b.stat)} <b>+${b.value}</b></strong></span>`).join('');
 }
@@ -179,10 +182,10 @@ function selectControl(s) {
   return `<button class="ship-select-toggle" data-select="${esc(s.id)}" aria-label="选择${esc(s.name)}" aria-pressed="${selected.has(s.id)}" aria-describedby="ship-selection-help"></button>`;
 }
 function card(s) {
-  return `<article class="ship-card ${statuses[s.id]} ${selected.has(s.id)?'selected':''}" data-card="${s.id}">${selectControl(s)}<div class="card-top"><span class="ship-id">NO. ${esc(s.id)}</span><span class="selected-mark" aria-hidden="true">${icon('check')}已选</span><span class="rarity-label">${esc(s.rarity)}</span></div><div class="ship-identity">${portrait(s)}<div><a class="ship-name" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" title="在BWIKI查看${esc(s.name)}">${esc(s.name)}</a>${s.aliases.length ? `<span class="ship-alias">${esc(s.aliases.join(' / '))}</span>` : ''}<div class="ship-meta">${esc(s.faction)}<span class="hull-label">${hullIcon(s.hull)}${esc(s.hull)}</span></div></div></div><div class="card-bonus"><span class="bonus-label">120级科技加成</span>${bonuses(s)}</div><div class="card-bottom">${statusSelect(s)}</div></article>`;
+  return `<article class="ship-card ${statuses[s.id]} ${selected.has(s.id)?'selected':''}" data-card="${s.id}">${selectControl(s)}<div class="card-top"><span class="ship-id">NO. ${esc(s.id)}</span><span class="selected-mark" aria-hidden="true">${icon('check')}已选</span>${rarityLabel(s)}</div><div class="ship-identity">${portrait(s)}<div><a class="ship-name" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" title="在BWIKI查看${esc(s.name)}">${esc(s.name)}</a>${s.aliases.length ? `<span class="ship-alias">${esc(s.aliases.join(' / '))}</span>` : ''}<div class="ship-meta">${esc(s.faction)}<span class="hull-label">${hullIcon(s.hull)}${esc(s.hull)}</span></div></div></div><div class="card-bonus"><span class="bonus-label">120级科技加成</span>${bonuses(s)}</div><div class="card-bottom">${statusSelect(s)}</div></article>`;
 }
 function tableRow(s) {
-  return `<tr data-card="${s.id}" class="${statuses[s.id]} ${selected.has(s.id)?'selected':''}"><td class="ship-id" data-label="图鉴编号">${selectControl(s)}${esc(s.id)}<span class="selected-mark" aria-hidden="true">${icon('check')}已选</span></td><td class="row-identity" data-label="舰船"><div class="table-identity">${portrait(s)}<div><a class="ship-name" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.name)}</a><div class="ship-meta"><span class="hull-label">${hullIcon(s.hull)}${esc(s.hull)}</span>${s.aliases.length ? ' · '+esc(s.aliases.join(' / ')) : ''}</div></div></div></td><td class="row-faction" data-label="阵营 / 稀有度"><div>${esc(s.faction)}</div><span class="ship-meta">${esc(s.rarity)}</span></td><td class="row-bonus" data-label="120级加成">${bonuses(s)}</td><td class="row-status" data-label="练级状态">${statusSelect(s)}</td></tr>`;
+  return `<tr data-card="${s.id}" class="${statuses[s.id]} ${selected.has(s.id)?'selected':''}"><td class="ship-id" data-label="图鉴编号">${selectControl(s)}${esc(s.id)}<span class="selected-mark" aria-hidden="true">${icon('check')}已选</span></td><td class="row-identity" data-label="舰船"><div class="table-identity">${portrait(s)}<div><a class="ship-name" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.name)}</a><div class="ship-meta"><span class="hull-label">${hullIcon(s.hull)}${esc(s.hull)}</span>${s.aliases.length ? ' · '+esc(s.aliases.join(' / ')) : ''}</div></div></div></td><td class="row-faction" data-label="阵营 / 稀有度"><div>${esc(s.faction)}</div>${rarityLabel(s)}</td><td class="row-bonus" data-label="120级加成">${bonuses(s)}</td><td class="row-status" data-label="练级状态">${statusSelect(s)}</td></tr>`;
 }
 function renderList() {
   listMotion.stop();
