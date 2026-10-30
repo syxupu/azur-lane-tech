@@ -102,6 +102,30 @@ test('备份往返不丢状态或未知ID；名单新增只补待练级',()=>{
   assert.equal(future.statuses.Future002,'pending');assert.equal(future.added,1);
   const undo={...statuses};statuses['070']='pending';assert.equal(undo['070'],'done');
 });
+test('10月22日五艘风帆舰奖励准确，旧存档更新仅新增五条待练记录',()=>{
+  const expected=[
+    ['760','长蛇号','风帆V','耐久',1],
+    ['761','雷伊尔·贝号','风帆M','装填',1],
+    ['762','铁角号','风帆S','耐久',2],
+    ['763','水星号','风帆V','机动',1],
+    ['764','塞利米耶号','风帆M','炮击',1],
+  ];
+  const addedIds=new Set(expected.map(([id])=>id));
+  const oldShips=ships.filter(s=>!addedIds.has(s.id));
+  const oldState=reconcile(oldShips).statuses;
+  oldState['070']='done';oldState['072']='unowned';
+  const updated=reconcile(ships,makeBackup(oldState));
+  assert.equal(updated.added,5);
+  for(const [id,status] of Object.entries(oldState)) assert.equal(updated.statuses[id],status);
+  for(const [id,name,hull,stat,value] of expected){
+    const ship=ships.find(s=>s.id===id);
+    assert.equal(ship.name,name);assert.equal(ship.hull,hull);assert.equal(ship.faction,'飓风');
+    assert.deepEqual(ship.bonuses,[{targets:['风帆'],stat,value}]);
+    assert.equal(updated.statuses[id],'pending');
+    assert.ok(filterShips(ships,updated.statuses,filter({target:'风帆',stat,search:name})).some(s=>s.id===id));
+  }
+});
+
 test('错误格式、版本、状态及恶意ID被拒绝',()=>{
   for(const invalid of [null,[],{}, {app:'azur-tech-checklist',version:2,statuses:{}}, {app:'azur-tech-checklist',version:1,statuses:[]}, {app:'azur-tech-checklist',version:1,statuses:{'072':'120'}}, {app:'azur-tech-checklist',version:1,statuses:{'<script>':'done'}}]) assert.throws(()=>validateBackup(invalid));
 });
