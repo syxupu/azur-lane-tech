@@ -2,6 +2,7 @@ import { STATUS, DEFAULT_FILTERS, HULLS, STATS, reconcile, filterShips, counts, 
 import { icon } from './ui-icons.js';
 import { normalizeTargets, addTarget, removeTarget, targetKey } from './targets.js';
 import { createListMotion } from './list-motion.js';
+import { DEFAULT_RESEARCH, normalizeResearch, researchStage, matchesResearch, describeStage } from './research.js';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -15,6 +16,41 @@ let ships = [], statuses = {}, filters = { ...DEFAULT_FILTERS }, view = 'grid', 
 let selected = new Set(), previous = null, importData = null, filtered = [], ready = false;
 let toastTimer, announceTimer;
 let userTargets = [], hullIcons = {};
+let gameRules = { ships: {}, research: [] }, research = { ...DEFAULT_RESEARCH };
+
+function isResearchMatch(ship) {
+  return matchesResearch(ship, researchStage(research, gameRules.research), gameRules.ships, research.missileMode, research.shipId);
+}
+function listShips(options = filters) {
+  const result = filterShips(ships, statuses, options);
+  return research.shipId && research.onlyMatches ? result.filter(isResearchMatch) : result;
+}
+function setResearch(patch) {
+  if (!ready) return;
+  research = normalizeResearch({ ...research, ...patch }, gameRules.research);
+  page = 1; selected.clear(); savePrefs(); render();
+  announce(research.shipId ? `已切换科研条件，当前清单 ${filtered.filter(isResearchMatch).length} 艘符合。` : '已关闭科研联动。');
+}
+function renderResearch() {
+  const active = Boolean(research.shipId);
+  $('research-ship').value = research.shipId;
+  $('clear-research').disabled = !active;
+  $('research-empty').hidden = active;
+  $('research-details').hidden = !active;
+  $('research-only').checked = research.onlyMatches;
+  $('research-missile').value = research.missileMode;
+  for (const button of document.querySelectorAll('[data-research-stage]')) {
+    button.disabled = !active;
+    button.setAttribute('aria-pressed', String(active && Number(button.dataset.researchStage) === research.stage));
+  }
+  if (!active) return;
+  const entry = gameRules.research.find(item => item.id === research.shipId);
+  $('research-requirements').innerHTML = entry.stages.map((stage, index) => `<li class="${index === research.stage ? 'active' : ''}"><strong>第${index ? '二' : '一'}阶段${index === research.stage ? ' · 当前' : ''}</strong><span>${esc(describeStage(stage))}</span></li>`).join('');
+  $('research-missile-label').hidden = !entry.stages[research.stage].requirements.some(condition => condition.nation === 5);
+  const eligible = ships.filter(isResearchMatch), c = counts(eligible, statuses);
+  const visible = filtered.filter(isResearchMatch).length;
+  $('research-summary').textContent = `符合条件共 ${eligible.length} 艘：待练 ${c.pending} · 待觉醒 ${c.awakening} · 已达120级 ${c.done} · 未拥有 ${c.unowned}。当前筛选中 ${visible} 艘${visible ? '已高亮' : '符合；可调整科技或阵营筛选'}。`;
+}
 
 for (const node of document.querySelectorAll('[data-icon]')) node.innerHTML = icon(node.dataset.icon);
 
@@ -28,6 +64,7 @@ function renderTargets() {
     <div class="target-item"><button class="target-card" data-quick="${i}" aria-pressed="false">
       <span class="target-top"><span class="target-symbol">${hullIcon(target)}</span><span class="target-name">${esc(target)} <strong>${esc(stat)}</strong></span></span>
       <span class="target-bottom"><span><b class="q-pending">—</b> 艘待练</span><span class="target-earned">已得 <b class="q-done">+0</b><span class="q-total"> / —</span></span></span>
+      <span class="target-awakening" hidden><b class="q-awakening">0</b> 艘待觉醒</span>
       <span class="target-progress" aria-hidden="true"><span></span></span>
     </button><button class="target-remove icon-button" data-remove-target="${i}" aria-label="删除目标：${esc(target+stat)}" title="删除目标">${icon('x')}</button></div>`).join('');
 }
@@ -41,7 +78,8 @@ function updateTargetForm() {
   else if (target && stat) {
     const s = summarize(ships,statuses,target,stat);
     const pending = filterShips(ships,statuses,{...DEFAULT_FILTERS,target,stat,status:'pending'}).length;
-    $('target-form-message').textContent = `${s.ships} 艘提供此项科技，${pending} 艘待练。已获得 +${s.done} / ${s.total}。`;
+    const awakening = filterShips(ships,statuses,{...DEFAULT_FILTERS,target,stat,status:'awakening'}).length;
+    $('target-form-message').textContent = `${s.ships} 艘提供此项科技，${pending} 艘待练，${awakening} 艘待觉醒。已获得 +${s.done} / ${s.total}。`;
   } else $('target-form-message').textContent = '选择受益舰种与属性，保存为你的科技目标。';
 }
 function openTargetForm() {
@@ -79,7 +117,7 @@ function saveProgress() {
   } catch { warning('浏览器未能保存记录。当前页面的修改仍在，请导出备份后再关闭页面。'); }
 }
 function savePrefs() {
-  try { localStorage.setItem(PREFS, JSON.stringify({ filters, view, targets: userTargets, dismissed: $('onboarding').hidden })); }
+  try { localStorage.setItem(PREFS, JSON.stringify({ filters, view, targets: userTargets, research, dismissed: $('onboarding').hidden })); }
   catch { warning('浏览器未能保存设置，请导出练级记录备份。'); }
 }
 function fillSelect(id, values) {
@@ -132,6 +170,9 @@ function renderOverview() {
     button.classList.toggle('active', active);
     button.setAttribute('aria-pressed', String(active));
     button.querySelector('.q-pending').textContent = pending;
+    const awakening = filterShips(ships,statuses,{...DEFAULT_FILTERS,target,stat,status:'awakening'}).length;
+    button.querySelector('.q-awakening').textContent = awakening;
+    button.querySelector('.target-awakening').hidden = !awakening;
     button.querySelector('.q-done').textContent = `+${s.done}`;
     button.querySelector('.q-total').textContent = ` / ${s.total}`;
     button.querySelector('.target-progress > span').style.transform = `scaleX(${s.total ? s.done/s.total : 0})`;
@@ -142,26 +183,29 @@ function renderMatrix() {
   const target = $('matrix-target').value;
   $('tech-matrix').innerHTML = STATS.map(stat => {
     const s = summarize(ships,statuses,target,stat);
-    return `<button class="matrix-card" data-matrix-target="${esc(target)}" data-matrix-stat="${stat}" ${s.total ? '' : 'disabled'} aria-label="${esc(target)}${stat}，已获得${s.done}，上限${s.total}，查看舰船"><span class="matrix-title">${stat}${icon('arrow-up-right')}</span><strong>+${s.done}<small> / ${s.total}</small></strong><span>${s.total ? `待练可得 +${s.pending} · 未拥有 +${s.unowned}` : '暂无120级科技加成'}</span></button>`;
+    return `<button class="matrix-card" data-matrix-target="${esc(target)}" data-matrix-stat="${stat}" ${s.total ? '' : 'disabled'} aria-label="${esc(target)}${stat}，已获得${s.done}，上限${s.total}，查看舰船"><span class="matrix-title">${stat}${icon('arrow-up-right')}</span><strong>+${s.done}<small> / ${s.total}</small></strong><span>${s.total ? `待练可得 +${s.pending} · 待觉醒 +${s.awakening} · 未拥有 +${s.unowned}` : '暂无120级科技加成'}</span></button>`;
   }).join('');
 }
 function renderFilters() {
   const labels = { target:'受益', stat:'属性', hull:'自身', faction:'阵营', rarity:'稀有度', search:'搜索' };
   const active = Object.keys(labels).filter(key => filters[key]);
   $('active-filters').innerHTML = active.map(key => `<button class="filter-chip" data-remove-filter="${key}" aria-label="清除${labels[key]}筛选：${esc(filters[key])}">${labels[key]}：${esc(filters[key])}${icon('x')}</button>`).join('');
+  if (research.shipId && research.onlyMatches) $('active-filters').insertAdjacentHTML('beforeend', `<button class="filter-chip" data-remove-research-filter>科研：${esc(ships.find(ship => ship.id === research.shipId).name)} · 第${research.stage ? '二' : '一'}阶段${icon('x')}</button>`);
   const formCount = ['target','stat','hull','faction','rarity'].filter(k => filters[k]).length;
   $('active-filter-count').textContent = formCount || '';
   $('goal-summary').hidden = !filters.target || !filters.stat;
   if (filters.target && filters.stat) {
     const s = summarize(ships,statuses,filters.target,filters.stat);
-    $('goal-summary').innerHTML = `<div class="goal-title">${hullIcon(filters.target)}<span><strong>${filters.target} · ${filters.stat}</strong><small>该目标全名单的120级奖励</small></span></div><div class="goal-values"><span>已获得<b>+${s.done}</b></span><span>待练可得<b>+${s.pending}</b></span><span>未拥有可得<b>+${s.unowned}</b></span></div>`;
+    $('goal-summary').innerHTML = `<div class="goal-title">${hullIcon(filters.target)}<span><strong>${filters.target} · ${filters.stat}</strong><small>该目标全名单的120级奖励</small></span></div><div class="goal-values"><span>已获得<b>+${s.done}</b></span><span>待练可得<b>+${s.pending}</b></span><span>待觉醒可得<b>+${s.awakening}</b></span><span>未拥有可得<b>+${s.unowned}</b></span></div>`;
   }
-  const c = counts(filterShips(ships,statuses,{...filters,status:''}),statuses);
-  $('status-count-all').textContent = c.pending + c.done + c.unowned;
+  const c = counts(listShips({...filters,status:''}),statuses);
+  $('status-count-all').textContent = Object.values(c).reduce((sum, value) => sum + value, 0);
   for (const key of Object.keys(c)) $(`status-count-${key}`).textContent = c[key];
   const title = filters.target && filters.stat ? `${filters.target}${filters.stat}` : '舰船清单';
   $('list-title').innerHTML = `${esc(title)} <span id="result-count">${filtered.length}<small> 艘</small></span>`;
-  $('list-subtitle').textContent = `待练级 → 未拥有 → 已达120级。点击${view === 'grid' ? '卡片' : '整行'}选择，再次点击取消；舰名可打开百科。`;
+  $('list-subtitle').textContent = `待练级 → 待觉醒 → 未拥有 → 已达120级。点击${view === 'grid' ? '卡片' : '整行'}选择，再次点击取消；舰名可打开百科。`;
+  $('awakening-help').hidden = filters.status !== 'awakening';
+  $('sort-help').hidden = filters.sort !== 'rarity';
   $('selection-scope').textContent = `（${filtered.length}艘，含其他页）`;
   $('apply-filters').textContent = `查看 ${filtered.length} 艘舰船`;
 }
@@ -172,14 +216,15 @@ function rarityLabel(s) {
   return `<span class="rarity-label rarity-${esc(s.rarity)}">${esc(s.rarity)}</span>`;
 }
 function bonuses(s) {
-  return s.bonuses.map(b => `<span class="bonus"><span class="bonus-targets">${esc(b.targets.join(' / '))}</span><strong>${esc(b.stat)} <b>+${b.value}</b></strong></span>`).join('');
+  const badge = isResearchMatch(s) ? `<span class="research-tag">${icon('target')}科研适用${gameRules.ships[s.id]?.alternateTypes ? ` · ${research.missileMode === 'main' ? '导驱主力模式' : '未改造 / 先锋模式'}` : ''}</span>` : '';
+  return s.bonuses.map(b => `<span class="bonus"><span class="bonus-targets">${esc(b.targets.join(' / '))}</span><strong>${esc(b.stat)} <b>+${b.value}</b></strong></span>`).join('') + badge;
 }
 function statusSelect(s) {
   const state = statuses[s.id];
-  return `<label class="status-select ${state}">${icon(state === 'done' ? 'circle-check' : state === 'pending' ? 'clock' : 'minus')}<span class="sr-only">${esc(s.name)}的练级状态</span><select data-ship-status="${esc(s.id)}" aria-label="${esc(s.name)}的练级状态">${Object.entries(STATUS).map(([v,label]) => `<option value="${v}" ${state === v ? 'selected' : ''}>${label}</option>`).join('')}</select>${icon('chevron-down','select-chevron')}</label>`;
+  return `<label class="status-select ${state}">${icon(state === 'done' ? 'circle-check' : state === 'awakening' ? 'sun' : state === 'pending' ? 'clock' : 'minus')}<span class="sr-only">${esc(s.name)}的练级状态</span><select data-ship-status="${esc(s.id)}" aria-label="${esc(s.name)}的练级状态"${state === 'awakening' ? ' aria-describedby="awakening-description"' : ''}>${Object.entries(STATUS).map(([v,label]) => `<option value="${v}" ${state === v ? 'selected' : ''}>${label}</option>`).join('')}</select>${icon('chevron-down','select-chevron')}</label>${state === 'awakening' ? '<span class="awakening-note">经验已足够，等待认知觉醒</span>' : ''}`;
 }
 function selectControl(s) {
-  return `<button class="ship-select-toggle" data-select="${esc(s.id)}" aria-label="选择${esc(s.name)}" aria-pressed="${selected.has(s.id)}" aria-describedby="ship-selection-help"></button>`;
+  return `<button class="ship-select-toggle" data-select="${esc(s.id)}" aria-label="选择${esc(s.name)}${isResearchMatch(s) ? '，符合当前科研经验条件' : ''}" aria-pressed="${selected.has(s.id)}" aria-describedby="ship-selection-help"></button>`;
 }
 function card(s) {
   return `<article class="ship-card ${statuses[s.id]} ${selected.has(s.id)?'selected':''}" data-card="${s.id}">${selectControl(s)}<div class="card-top"><span class="ship-id">NO. ${esc(s.id)}</span><span class="selected-mark" aria-hidden="true">${icon('check')}已选</span>${rarityLabel(s)}</div><div class="ship-identity">${portrait(s)}<div><a class="ship-name" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" title="在BWIKI查看${esc(s.name)}">${esc(s.name)}</a>${s.aliases.length ? `<span class="ship-alias">${esc(s.aliases.join(' / '))}</span>` : ''}<div class="ship-meta">${esc(s.faction)}<span class="hull-label">${hullIcon(s.hull)}${esc(s.hull)}</span></div></div></div><div class="card-bonus"><span class="bonus-label">120级科技加成</span>${bonuses(s)}</div><div class="card-bottom">${statusSelect(s)}</div></article>`;
@@ -193,13 +238,15 @@ function renderList() {
   $('ship-list').className = view === 'grid' ? 'ship-grid' : 'ship-table-wrap';
   $('ship-list').setAttribute('aria-busy', 'false');
   if (!visible.length) {
-    $('ship-list').innerHTML = `<div class="empty"><span class="empty-icon">${icon('search')}</span><h3>没有符合条件的舰船</h3><p>调整科技目标或练级状态，继续寻找下一艘目标。</p><button class="button primary" id="empty-reset">清除全部筛选</button></div>`;
+    $('ship-list').innerHTML = `<div class="empty"><span class="empty-icon">${icon('search')}</span><h3>没有符合条件的舰船</h3><p>调整科技目标、练级状态或科研条件，继续寻找下一艘目标。</p><button class="button primary" id="empty-reset">清除全部筛选</button></div>`;
   } else if (view === 'grid') {
     $('ship-list').innerHTML = visible.map(card).join('');
   } else {
     $('ship-list').innerHTML = `<table class="ship-table"><caption class="sr-only">当前筛选的舰船和120级科技加成</caption><thead><tr><th scope="col">编号</th><th scope="col">舰船 / 自身舰种</th><th scope="col">阵营 / 稀有度</th><th scope="col">120级加成</th><th scope="col">练级状态</th></tr></thead><tbody>${visible.map(tableRow).join('')}</tbody></table>`;
   }
   for (const img of $('ship-list').querySelectorAll('img')) img.addEventListener('error', () => { img.hidden = true; }, { once: true });
+  const matches = new Set(visible.filter(isResearchMatch).map(ship => ship.id));
+  for (const element of $('ship-list').querySelectorAll('[data-card]')) element.classList.toggle('research-match', matches.has(element.dataset.card));
   const pages = Math.ceil(filtered.length/PAGE_SIZE);
   $('pagination').innerHTML = pages > 1 ? `<span>显示 ${(page-1)*PAGE_SIZE+1}–${Math.min(page*PAGE_SIZE,filtered.length)} / ${filtered.length} 艘</span><div><button class="icon-button" data-page="${page-1}" ${page===1?'disabled':''} aria-label="上一页">${icon('chevron-left')}</button><span>${page} / ${pages}</span><button class="icon-button" data-page="${page+1}" ${page===pages?'disabled':''} aria-label="下一页">${icon('chevron-right')}</button></div>` : `<span>已显示全部 ${filtered.length} 艘舰船</span>`;
   syncSelection();
@@ -232,9 +279,9 @@ function restoreFocus(bookmark) {
 function render({ animate = false } = {}) {
   const positions = animate ? listMotion.capture() : null;
   const bookmark = focusBookmark();
-  filtered = filterShips(ships,statuses,filters);
+  filtered = listShips();
   page = Math.max(1,Math.min(page,Math.ceil(filtered.length/PAGE_SIZE)||1));
-  renderOverview(); renderFilters(); renderList();
+  renderOverview(); renderFilters(); renderResearch(); renderList();
   $('undo').disabled = previous === null;
   restoreFocus(bookmark);
   listMotion.play(positions);
@@ -304,12 +351,23 @@ document.addEventListener('click', event => {
   const close = event.target.closest('[data-close-dialog]'); if (close) $(close.dataset.closeDialog).close();
   const pagination = event.target.closest('[data-page]');
   if (pagination && !pagination.disabled) { page = +pagination.dataset.page; renderList(); $('list-title').focus({preventScroll:true}); scrollToList(); announce(`第 ${page} 页，共 ${filtered.length} 艘舰船。`); }
-  if (event.target.closest('#empty-reset')) { setFilters({...DEFAULT_FILTERS}); $('search').focus(); }
+  if (event.target.closest('#empty-reset')) { research.onlyMatches = false; setFilters({...DEFAULT_FILTERS}); $('search').focus(); }
 });
 document.addEventListener('change', event => {
   const el = event.target;
   if (el.dataset.filter) setFilters({[el.dataset.filter]:el.value});
   if (el.dataset.shipStatus) changeStatuses([el.dataset.shipStatus],el.value);
+});
+$('research-ship').addEventListener('change', () => setResearch({shipId: $('research-ship').value, stage: 0}));
+$('research-stages').addEventListener('click', event => {
+  const button = event.target.closest('[data-research-stage]');
+  if (button && !button.disabled) setResearch({stage: Number(button.dataset.researchStage)});
+});
+$('clear-research').addEventListener('click', () => { setResearch({...DEFAULT_RESEARCH}); $('research-ship').focus(); });
+$('research-only').addEventListener('change', () => setResearch({onlyMatches: $('research-only').checked}));
+$('research-missile').addEventListener('change', () => setResearch({missileMode: $('research-missile').value}));
+$('active-filters').addEventListener('click', event => {
+  if (event.target.closest('[data-remove-research-filter]')) { setResearch({onlyMatches: false}); $('research-only').focus({preventScroll: true}); }
 });
 $('search').addEventListener('input', () => setFilters({search:$('search').value}));
 $('sort').addEventListener('change', () => setFilters({sort:$('sort').value}));
@@ -356,7 +414,7 @@ $('import-file').addEventListener('change', async () => {
     importData = validateBackup(JSON.parse(await file.text()));
     const merged = reconcile(ships,importData), c = counts(ships,merged.statuses);
     const known = new Set(ships.map(s=>s.id)), unknown = Object.keys(importData.statuses).filter(id=>!known.has(id)).length;
-    $('import-preview').innerHTML = `<strong>${esc(file.name)}</strong><div class="import-counts"><span>已达120级<b>${c.done}</b></span><span>待练级<b>${c.pending}</b></span><span>未拥有<b>${c.unowned}</b></span></div><p>未包含的 ${merged.added} 艘将设为待练级。${unknown ? `另保留 ${unknown} 条未知舰船记录，等待名单更新匹配。` : ''}</p>`;
+    $('import-preview').innerHTML = `<strong>${esc(file.name)}</strong><div class="import-counts"><span>已达120级<b>${c.done}</b></span><span>待练级<b>${c.pending}</b></span><span>待觉醒<b>${c.awakening}</b></span><span>未拥有<b>${c.unowned}</b></span></div><p>未包含的 ${merged.added} 艘将设为待练级。${unknown ? `另保留 ${unknown} 条未知舰船记录，等待名单更新匹配。` : ''}</p>`;
     $('import-dialog').showModal();
   } catch (error) { importData = null; toast(error instanceof SyntaxError ? '文件不是有效JSON，原有记录未改变。' : error.message, true); }
 });
@@ -371,11 +429,18 @@ async function init() {
     const response = await fetch('data/ships.json'); if (!response.ok) throw new Error('舰船数据加载失败');
     const catalog = await response.json(); ships = catalog.ships;
     if (catalog.schemaVersion !== 1 || !Array.isArray(ships) || !ships.length) throw new Error('舰船数据格式不受支持');
+    const rulesResponse = await fetch('data/game-rules.json');
+    if (!rulesResponse.ok) throw new Error('游戏排序与科研条件加载失败');
+    gameRules = await rulesResponse.json();
+    if (gameRules.schemaVersion !== 1 || !gameRules.ships || !Array.isArray(gameRules.research)) throw new Error('科研条件格式不受支持');
+    ships = ships.map(ship => ({...ship, gameGroupId: gameRules.ships[ship.id]?.groupId}));
     let saved = null, prefs = {}, corrupt = false;
     try { const raw = localStorage.getItem(STORE); if (raw) saved = validateBackup(JSON.parse(raw)); }
     catch { corrupt = true; warning('无法读取原存档。当前显示默认记录，请导入备份恢复；原始存档暂未覆盖。'); }
     try { const raw = localStorage.getItem(PREFS); if (raw) prefs = JSON.parse(raw) || {}; } catch { /* UI preferences can safely fall back without discarding progress. */ }
     userTargets = normalizeTargets(prefs.targets,ships);
+    research = normalizeResearch(prefs.research, gameRules.research);
+    $('research-ship').insertAdjacentHTML('beforeend', [...new Set(gameRules.research.map(item => item.season))].map(season => `<optgroup label="科研${season}期">${gameRules.research.filter(item => item.season === season).map(item => { const ship = ships.find(ship => ship.id === item.id); return `<option value="${esc(item.id)}">${esc(ship.name)}${ship.aliases.length ? `（${esc(ship.aliases.join(' / '))}）` : ''}</option>`; }).join('')}</optgroup>`).join(''));
     try {
       const iconResponse = await fetch('assets/hulls/manifest.json');
       if (iconResponse.ok) {
@@ -394,14 +459,14 @@ async function init() {
     fillSelect('filter-faction', [...new Set(ships.map(s=>s.faction))]); fillSelect('filter-rarity', [...new Set(ships.map(s=>s.rarity))]);
     for (const el of document.querySelectorAll('[data-filter]')) if (![...el.options].some(o=>o.value===filters[el.dataset.filter])) filters[el.dataset.filter] = '';
     if (filters.status && !Object.hasOwn(STATUS,filters.status)) filters.status = '';
-    if (!['id','name','bonus'].includes(filters.sort)) filters.sort = 'id';
+    if (!['id','name','bonus','rarity'].includes(filters.sort)) filters.sort = DEFAULT_FILTERS.sort;
     $('catalog-count').textContent = '全舰种科技档案';
     const updated = new Date(catalog.updatedAt).toLocaleDateString('zh-CN');
     $('data-source').innerHTML = `数据：<a href="${esc(catalog.source)}" target="_blank" rel="noopener noreferrer">碧蓝航线 BWIKI ${icon('arrow-up-right')}</a> · ${updated}`;
     $('onboarding').hidden = Boolean(saved && prefs.dismissed !== false);
     if (result.added) { $('onboarding').hidden = false; $('onboarding-text').textContent = `名单新增 ${result.added} 艘舰船，已设为待练级。原有记录已保留，请核对新增舰船。`; }
     ready = true;
-    for (const el of document.querySelectorAll('#export, #import, [data-add-target]')) el.disabled = false;
+    for (const el of document.querySelectorAll('#export, #import, #research-ship, [data-add-target]')) el.disabled = false;
     renderTargets(); syncControls(); render(); if (!corrupt) saveProgress();
   } catch (error) {
     $('ship-list').setAttribute('aria-busy','false');

@@ -1,0 +1,6319 @@
+{
+  "schemaVersion": 1,
+  "source": "https://github.com/AzurLaneTools/AzurLaneLuaScripts",
+  "sourceRevision": "361d754aac7fcb07a890752cdb657bca48f85bf1",
+  "updatedAt": "2026-11-03T07:20:23.311Z",
+  "ships": {
+    "100": {
+      "groupId": 20120,
+      "nation": 2,
+      "type": 1
+    },
+    "101": {
+      "groupId": 20121,
+      "nation": 2,
+      "type": 1
+    },
+    "102": {
+      "groupId": 20122,
+      "nation": 2,
+      "type": 1
+    },
+    "103": {
+      "groupId": 20123,
+      "nation": 2,
+      "type": 1
+    },
+    "104": {
+      "groupId": 20201,
+      "nation": 2,
+      "type": 2
+    },
+    "105": {
+      "groupId": 20202,
+      "nation": 2,
+      "type": 2
+    },
+    "106": {
+      "groupId": 20203,
+      "nation": 2,
+      "type": 2
+    },
+    "107": {
+      "groupId": 20204,
+      "nation": 2,
+      "type": 2
+    },
+    "110": {
+      "groupId": 20207,
+      "nation": 2,
+      "type": 2
+    },
+    "111": {
+      "groupId": 20208,
+      "nation": 2,
+      "type": 2
+    },
+    "112": {
+      "groupId": 20209,
+      "nation": 2,
+      "type": 2
+    },
+    "113": {
+      "groupId": 20210,
+      "nation": 2,
+      "type": 2
+    },
+    "114": {
+      "groupId": 20211,
+      "nation": 2,
+      "type": 2
+    },
+    "115": {
+      "groupId": 20212,
+      "nation": 2,
+      "type": 2
+    },
+    "116": {
+      "groupId": 20213,
+      "nation": 2,
+      "type": 2
+    },
+    "117": {
+      "groupId": 20214,
+      "nation": 2,
+      "type": 2
+    },
+    "118": {
+      "groupId": 20215,
+      "nation": 2,
+      "type": 2
+    },
+    "119": {
+      "groupId": 20301,
+      "nation": 2,
+      "type": 3
+    },
+    "120": {
+      "groupId": 20302,
+      "nation": 2,
+      "type": 3
+    },
+    "121": {
+      "groupId": 20303,
+      "nation": 2,
+      "type": 3
+    },
+    "122": {
+      "groupId": 20304,
+      "nation": 2,
+      "type": 3
+    },
+    "123": {
+      "groupId": 20305,
+      "nation": 2,
+      "type": 3
+    },
+    "124": {
+      "groupId": 20306,
+      "nation": 2,
+      "type": 3
+    },
+    "125": {
+      "groupId": 20307,
+      "nation": 2,
+      "type": 3
+    },
+    "126": {
+      "groupId": 20308,
+      "nation": 2,
+      "type": 3
+    },
+    "127": {
+      "groupId": 20401,
+      "nation": 2,
+      "type": 4
+    },
+    "128": {
+      "groupId": 20402,
+      "nation": 2,
+      "type": 4
+    },
+    "129": {
+      "groupId": 20403,
+      "nation": 2,
+      "type": 4
+    },
+    "130": {
+      "groupId": 20501,
+      "nation": 2,
+      "type": 5
+    },
+    "131": {
+      "groupId": 20502,
+      "nation": 2,
+      "type": 5
+    },
+    "132": {
+      "groupId": 20503,
+      "nation": 2,
+      "type": 5
+    },
+    "133": {
+      "groupId": 20504,
+      "nation": 2,
+      "type": 5
+    },
+    "134": {
+      "groupId": 20505,
+      "nation": 2,
+      "type": 5
+    },
+    "135": {
+      "groupId": 20506,
+      "nation": 2,
+      "type": 5
+    },
+    "136": {
+      "groupId": 20507,
+      "nation": 2,
+      "type": 5
+    },
+    "137": {
+      "groupId": 20513,
+      "nation": 2,
+      "type": 5
+    },
+    "138": {
+      "groupId": 20516,
+      "nation": 2,
+      "type": 5
+    },
+    "140": {
+      "groupId": 20601,
+      "nation": 2,
+      "type": 6
+    },
+    "142": {
+      "groupId": 20603,
+      "nation": 2,
+      "type": 6
+    },
+    "143": {
+      "groupId": 20701,
+      "nation": 2,
+      "type": 7
+    },
+    "144": {
+      "groupId": 20702,
+      "nation": 2,
+      "type": 7
+    },
+    "145": {
+      "groupId": 20703,
+      "nation": 2,
+      "type": 7
+    },
+    "146": {
+      "groupId": 20704,
+      "nation": 2,
+      "type": 7
+    },
+    "147": {
+      "groupId": 20705,
+      "nation": 2,
+      "type": 7
+    },
+    "148": {
+      "groupId": 20706,
+      "nation": 2,
+      "type": 7
+    },
+    "149": {
+      "groupId": 21301,
+      "nation": 2,
+      "type": 13
+    },
+    "150": {
+      "groupId": 21302,
+      "nation": 2,
+      "type": 13
+    },
+    "151": {
+      "groupId": 30101,
+      "nation": 3,
+      "type": 1
+    },
+    "152": {
+      "groupId": 30102,
+      "nation": 3,
+      "type": 1
+    },
+    "154": {
+      "groupId": 30104,
+      "nation": 3,
+      "type": 1
+    },
+    "155": {
+      "groupId": 30105,
+      "nation": 3,
+      "type": 1
+    },
+    "159": {
+      "groupId": 30109,
+      "nation": 3,
+      "type": 1
+    },
+    "160": {
+      "groupId": 30110,
+      "nation": 3,
+      "type": 1
+    },
+    "161": {
+      "groupId": 30111,
+      "nation": 3,
+      "type": 1
+    },
+    "162": {
+      "groupId": 30112,
+      "nation": 3,
+      "type": 1
+    },
+    "163": {
+      "groupId": 30113,
+      "nation": 3,
+      "type": 1
+    },
+    "164": {
+      "groupId": 30114,
+      "nation": 3,
+      "type": 1
+    },
+    "165": {
+      "groupId": 30115,
+      "nation": 3,
+      "type": 1
+    },
+    "166": {
+      "groupId": 30116,
+      "nation": 3,
+      "type": 1
+    },
+    "167": {
+      "groupId": 30117,
+      "nation": 3,
+      "type": 1
+    },
+    "168": {
+      "groupId": 30118,
+      "nation": 3,
+      "type": 1
+    },
+    "169": {
+      "groupId": 30119,
+      "nation": 3,
+      "type": 1
+    },
+    "170": {
+      "groupId": 30120,
+      "nation": 3,
+      "type": 1
+    },
+    "171": {
+      "groupId": 30121,
+      "nation": 3,
+      "type": 1
+    },
+    "173": {
+      "groupId": 30123,
+      "nation": 3,
+      "type": 1
+    },
+    "174": {
+      "groupId": 30124,
+      "nation": 3,
+      "type": 1
+    },
+    "175": {
+      "groupId": 30125,
+      "nation": 3,
+      "type": 1
+    },
+    "176": {
+      "groupId": 30126,
+      "nation": 3,
+      "type": 1
+    },
+    "177": {
+      "groupId": 30127,
+      "nation": 3,
+      "type": 1
+    },
+    "178": {
+      "groupId": 30128,
+      "nation": 3,
+      "type": 1
+    },
+    "179": {
+      "groupId": 30201,
+      "nation": 3,
+      "type": 2
+    },
+    "182": {
+      "groupId": 30204,
+      "nation": 3,
+      "type": 2
+    },
+    "183": {
+      "groupId": 30205,
+      "nation": 3,
+      "type": 2
+    },
+    "184": {
+      "groupId": 30206,
+      "nation": 3,
+      "type": 2
+    },
+    "185": {
+      "groupId": 30207,
+      "nation": 3,
+      "type": 2
+    },
+    "186": {
+      "groupId": 30208,
+      "nation": 3,
+      "type": 2
+    },
+    "187": {
+      "groupId": 30209,
+      "nation": 3,
+      "type": 2
+    },
+    "188": {
+      "groupId": 30210,
+      "nation": 3,
+      "type": 2
+    },
+    "189": {
+      "groupId": 30211,
+      "nation": 3,
+      "type": 2
+    },
+    "190": {
+      "groupId": 30301,
+      "nation": 3,
+      "type": 3
+    },
+    "191": {
+      "groupId": 30302,
+      "nation": 3,
+      "type": 3
+    },
+    "192": {
+      "groupId": 30303,
+      "nation": 3,
+      "type": 3
+    },
+    "193": {
+      "groupId": 30304,
+      "nation": 3,
+      "type": 3
+    },
+    "195": {
+      "groupId": 30306,
+      "nation": 3,
+      "type": 3
+    },
+    "196": {
+      "groupId": 30307,
+      "nation": 3,
+      "type": 3
+    },
+    "197": {
+      "groupId": 30308,
+      "nation": 3,
+      "type": 3
+    },
+    "198": {
+      "groupId": 30309,
+      "nation": 3,
+      "type": 3
+    },
+    "199": {
+      "groupId": 30310,
+      "nation": 3,
+      "type": 3
+    },
+    "200": {
+      "groupId": 30311,
+      "nation": 3,
+      "type": 3
+    },
+    "201": {
+      "groupId": 30312,
+      "nation": 3,
+      "type": 3
+    },
+    "202": {
+      "groupId": 30313,
+      "nation": 3,
+      "type": 3
+    },
+    "203": {
+      "groupId": 30314,
+      "nation": 3,
+      "type": 3
+    },
+    "204": {
+      "groupId": 30401,
+      "nation": 3,
+      "type": 4
+    },
+    "205": {
+      "groupId": 30402,
+      "nation": 3,
+      "type": 4
+    },
+    "206": {
+      "groupId": 30403,
+      "nation": 3,
+      "type": 4
+    },
+    "207": {
+      "groupId": 30404,
+      "nation": 3,
+      "type": 4
+    },
+    "208": {
+      "groupId": 30501,
+      "nation": 3,
+      "type": 5
+    },
+    "209": {
+      "groupId": 30502,
+      "nation": 3,
+      "type": 5
+    },
+    "210": {
+      "groupId": 30503,
+      "nation": 3,
+      "type": 5
+    },
+    "211": {
+      "groupId": 30504,
+      "nation": 3,
+      "type": 5
+    },
+    "212": {
+      "groupId": 30505,
+      "nation": 3,
+      "type": 5
+    },
+    "213": {
+      "groupId": 30506,
+      "nation": 3,
+      "type": 5
+    },
+    "214": {
+      "groupId": 30512,
+      "nation": 3,
+      "type": 5
+    },
+    "215": {
+      "groupId": 30508,
+      "nation": 3,
+      "type": 5
+    },
+    "217": {
+      "groupId": 30510,
+      "nation": 3,
+      "type": 5
+    },
+    "218": {
+      "groupId": 30601,
+      "nation": 3,
+      "type": 6
+    },
+    "219": {
+      "groupId": 30602,
+      "nation": 3,
+      "type": 6
+    },
+    "220": {
+      "groupId": 30603,
+      "nation": 3,
+      "type": 6
+    },
+    "221": {
+      "groupId": 30604,
+      "nation": 3,
+      "type": 6
+    },
+    "222": {
+      "groupId": 30605,
+      "nation": 3,
+      "type": 6
+    },
+    "223": {
+      "groupId": 30606,
+      "nation": 3,
+      "type": 6
+    },
+    "224": {
+      "groupId": 30701,
+      "nation": 3,
+      "type": 7
+    },
+    "225": {
+      "groupId": 30702,
+      "nation": 3,
+      "type": 7
+    },
+    "226": {
+      "groupId": 30703,
+      "nation": 3,
+      "type": 7
+    },
+    "227": {
+      "groupId": 30704,
+      "nation": 3,
+      "type": 7
+    },
+    "228": {
+      "groupId": 30705,
+      "nation": 3,
+      "type": 7
+    },
+    "229": {
+      "groupId": 30706,
+      "nation": 3,
+      "type": 7
+    },
+    "230": {
+      "groupId": 30707,
+      "nation": 3,
+      "type": 7
+    },
+    "231": {
+      "groupId": 30708,
+      "nation": 3,
+      "type": 7
+    },
+    "232": {
+      "groupId": 31201,
+      "nation": 3,
+      "type": 12
+    },
+    "233": {
+      "groupId": 40101,
+      "nation": 4,
+      "type": 1
+    },
+    "236": {
+      "groupId": 40123,
+      "nation": 4,
+      "type": 1
+    },
+    "237": {
+      "groupId": 40125,
+      "nation": 4,
+      "type": 1
+    },
+    "238": {
+      "groupId": 40201,
+      "nation": 4,
+      "type": 2
+    },
+    "239": {
+      "groupId": 40202,
+      "nation": 4,
+      "type": 2
+    },
+    "240": {
+      "groupId": 40203,
+      "nation": 4,
+      "type": 2
+    },
+    "241": {
+      "groupId": 40204,
+      "nation": 4,
+      "type": 2
+    },
+    "242": {
+      "groupId": 40301,
+      "nation": 4,
+      "type": 3
+    },
+    "243": {
+      "groupId": 40302,
+      "nation": 4,
+      "type": 3
+    },
+    "244": {
+      "groupId": 40303,
+      "nation": 4,
+      "type": 3
+    },
+    "245": {
+      "groupId": 40304,
+      "nation": 4,
+      "type": 3
+    },
+    "246": {
+      "groupId": 40305,
+      "nation": 4,
+      "type": 3
+    },
+    "248": {
+      "groupId": 40401,
+      "nation": 4,
+      "type": 4
+    },
+    "249": {
+      "groupId": 40402,
+      "nation": 4,
+      "type": 4
+    },
+    "250": {
+      "groupId": 40501,
+      "nation": 4,
+      "type": 5
+    },
+    "251": {
+      "groupId": 40502,
+      "nation": 4,
+      "type": 5
+    },
+    "252": {
+      "groupId": 40701,
+      "nation": 4,
+      "type": 7
+    },
+    "253": {
+      "groupId": 50101,
+      "nation": 5,
+      "type": 1,
+      "alternateTypes": [
+        20,
+        21
+      ]
+    },
+    "254": {
+      "groupId": 50102,
+      "nation": 5,
+      "type": 1,
+      "alternateTypes": [
+        20,
+        21
+      ]
+    },
+    "255": {
+      "groupId": 50103,
+      "nation": 5,
+      "type": 1,
+      "alternateTypes": [
+        20,
+        21
+      ]
+    },
+    "256": {
+      "groupId": 50104,
+      "nation": 5,
+      "type": 1,
+      "alternateTypes": [
+        20,
+        21
+      ]
+    },
+    "257": {
+      "groupId": 50201,
+      "nation": 5,
+      "type": 2
+    },
+    "258": {
+      "groupId": 50202,
+      "nation": 5,
+      "type": 2
+    },
+    "259": {
+      "groupId": 50203,
+      "nation": 5,
+      "type": 2
+    },
+    "262": {
+      "groupId": 70201,
+      "nation": 7,
+      "type": 2
+    },
+    "263": {
+      "groupId": 10127,
+      "nation": 1,
+      "type": 1
+    },
+    "264": {
+      "groupId": 40119,
+      "nation": 4,
+      "type": 1
+    },
+    "265": {
+      "groupId": 40120,
+      "nation": 4,
+      "type": 1
+    },
+    "266": {
+      "groupId": 40121,
+      "nation": 4,
+      "type": 1
+    },
+    "267": {
+      "groupId": 40146,
+      "nation": 4,
+      "type": 1
+    },
+    "268": {
+      "groupId": 30129,
+      "nation": 3,
+      "type": 1
+    },
+    "269": {
+      "groupId": 30130,
+      "nation": 3,
+      "type": 1
+    },
+    "270": {
+      "groupId": 30131,
+      "nation": 3,
+      "type": 1
+    },
+    "271": {
+      "groupId": 30132,
+      "nation": 3,
+      "type": 1
+    },
+    "272": {
+      "groupId": 30133,
+      "nation": 3,
+      "type": 1
+    },
+    "274": {
+      "groupId": 30135,
+      "nation": 3,
+      "type": 1
+    },
+    "276": {
+      "groupId": 30137,
+      "nation": 3,
+      "type": 1
+    },
+    "277": {
+      "groupId": 30138,
+      "nation": 3,
+      "type": 1
+    },
+    "278": {
+      "groupId": 30139,
+      "nation": 3,
+      "type": 1
+    },
+    "280": {
+      "groupId": 30141,
+      "nation": 3,
+      "type": 1
+    },
+    "286": {
+      "groupId": 30147,
+      "nation": 3,
+      "type": 1
+    },
+    "287": {
+      "groupId": 30148,
+      "nation": 3,
+      "type": 1
+    },
+    "288": {
+      "groupId": 30149,
+      "nation": 3,
+      "type": 1
+    },
+    "293": {
+      "groupId": 30154,
+      "nation": 3,
+      "type": 1
+    },
+    "295": {
+      "groupId": 30156,
+      "nation": 3,
+      "type": 1
+    },
+    "296": {
+      "groupId": 30157,
+      "nation": 3,
+      "type": 1
+    },
+    "297": {
+      "groupId": 30158,
+      "nation": 3,
+      "type": 1
+    },
+    "299": {
+      "groupId": 10129,
+      "nation": 1,
+      "type": 1
+    },
+    "300": {
+      "groupId": 10130,
+      "nation": 1,
+      "type": 1
+    },
+    "301": {
+      "groupId": 10131,
+      "nation": 1,
+      "type": 1
+    },
+    "303": {
+      "groupId": 10211,
+      "nation": 1,
+      "type": 2
+    },
+    "304": {
+      "groupId": 10212,
+      "nation": 1,
+      "type": 2
+    },
+    "305": {
+      "groupId": 10213,
+      "nation": 1,
+      "type": 2
+    },
+    "306": {
+      "groupId": 20124,
+      "nation": 2,
+      "type": 1
+    },
+    "307": {
+      "groupId": 20125,
+      "nation": 2,
+      "type": 1
+    },
+    "308": {
+      "groupId": 30212,
+      "nation": 3,
+      "type": 2
+    },
+    "309": {
+      "groupId": 30213,
+      "nation": 3,
+      "type": 2
+    },
+    "310": {
+      "groupId": 30214,
+      "nation": 3,
+      "type": 2
+    },
+    "316": {
+      "groupId": 30159,
+      "nation": 3,
+      "type": 1
+    },
+    "317": {
+      "groupId": 30160,
+      "nation": 3,
+      "type": 1
+    },
+    "318": {
+      "groupId": 30161,
+      "nation": 3,
+      "type": 1
+    },
+    "319": {
+      "groupId": 30162,
+      "nation": 3,
+      "type": 1
+    },
+    "320": {
+      "groupId": 30511,
+      "nation": 3,
+      "type": 5
+    },
+    "321": {
+      "groupId": 30220,
+      "nation": 3,
+      "type": 2
+    },
+    "322": {
+      "groupId": 30221,
+      "nation": 3,
+      "type": 2
+    },
+    "324": {
+      "groupId": 30223,
+      "nation": 3,
+      "type": 2
+    },
+    "325": {
+      "groupId": 20126,
+      "nation": 2,
+      "type": 1
+    },
+    "326": {
+      "groupId": 20127,
+      "nation": 2,
+      "type": 1
+    },
+    "327": {
+      "groupId": 20216,
+      "nation": 2,
+      "type": 2
+    },
+    "328": {
+      "groupId": 20217,
+      "nation": 2,
+      "type": 2
+    },
+    "329": {
+      "groupId": 10214,
+      "nation": 1,
+      "type": 2
+    },
+    "330": {
+      "groupId": 10215,
+      "nation": 1,
+      "type": 2
+    },
+    "331": {
+      "groupId": 30163,
+      "nation": 3,
+      "type": 1
+    },
+    "332": {
+      "groupId": 30164,
+      "nation": 3,
+      "type": 1
+    },
+    "333": {
+      "groupId": 30165,
+      "nation": 3,
+      "type": 1
+    },
+    "334": {
+      "groupId": 30166,
+      "nation": 3,
+      "type": 1
+    },
+    "336": {
+      "groupId": 21304,
+      "nation": 2,
+      "type": 13
+    },
+    "337": {
+      "groupId": 20309,
+      "nation": 2,
+      "type": 3
+    },
+    "338": {
+      "groupId": 30801,
+      "nation": 3,
+      "type": 8
+    },
+    "339": {
+      "groupId": 30802,
+      "nation": 3,
+      "type": 8
+    },
+    "340": {
+      "groupId": 30803,
+      "nation": 3,
+      "type": 8
+    },
+    "341": {
+      "groupId": 40801,
+      "nation": 4,
+      "type": 8
+    },
+    "342": {
+      "groupId": 10801,
+      "nation": 1,
+      "type": 8
+    },
+    "343": {
+      "groupId": 40802,
+      "nation": 4,
+      "type": 8
+    },
+    "344": {
+      "groupId": 40803,
+      "nation": 4,
+      "type": 8
+    },
+    "345": {
+      "groupId": 40135,
+      "nation": 4,
+      "type": 1
+    },
+    "346": {
+      "groupId": 40118,
+      "nation": 4,
+      "type": 1
+    },
+    "347": {
+      "groupId": 80101,
+      "nation": 8,
+      "type": 1
+    },
+    "348": {
+      "groupId": 80102,
+      "nation": 8,
+      "type": 1
+    },
+    "349": {
+      "groupId": 80201,
+      "nation": 8,
+      "type": 2
+    },
+    "350": {
+      "groupId": 80801,
+      "nation": 8,
+      "type": 8
+    },
+    "351": {
+      "groupId": 90101,
+      "nation": 9,
+      "type": 1
+    },
+    "352": {
+      "groupId": 90401,
+      "nation": 9,
+      "type": 4
+    },
+    "353": {
+      "groupId": 90501,
+      "nation": 9,
+      "type": 5
+    },
+    "354": {
+      "groupId": 10519,
+      "nation": 1,
+      "type": 5
+    },
+    "355": {
+      "groupId": 10133,
+      "nation": 1,
+      "type": 1
+    },
+    "356": {
+      "groupId": 20604,
+      "nation": 2,
+      "type": 6
+    },
+    "357": {
+      "groupId": 10709,
+      "nation": 1,
+      "type": 7
+    },
+    "358": {
+      "groupId": 10802,
+      "nation": 1,
+      "type": 8
+    },
+    "359": {
+      "groupId": 80103,
+      "nation": 8,
+      "type": 1
+    },
+    "360": {
+      "groupId": 10216,
+      "nation": 1,
+      "type": 2
+    },
+    "361": {
+      "groupId": 20219,
+      "nation": 2,
+      "type": 2
+    },
+    "362": {
+      "groupId": 10136,
+      "nation": 1,
+      "type": 1
+    },
+    "363": {
+      "groupId": 10137,
+      "nation": 1,
+      "type": 1
+    },
+    "364": {
+      "groupId": 10313,
+      "nation": 1,
+      "type": 3
+    },
+    "365": {
+      "groupId": 10134,
+      "nation": 1,
+      "type": 1
+    },
+    "366": {
+      "groupId": 10218,
+      "nation": 1,
+      "type": 2
+    },
+    "367": {
+      "groupId": 30405,
+      "nation": 3,
+      "type": 4
+    },
+    "368": {
+      "groupId": 30507,
+      "nation": 3,
+      "type": 5
+    },
+    "369": {
+      "groupId": 30179,
+      "nation": 3,
+      "type": 1
+    },
+    "370": {
+      "groupId": 30180,
+      "nation": 3,
+      "type": 1
+    },
+    "371": {
+      "groupId": 20220,
+      "nation": 2,
+      "type": 2
+    },
+    "372": {
+      "groupId": 20221,
+      "nation": 2,
+      "type": 2
+    },
+    "373": {
+      "groupId": 20222,
+      "nation": 2,
+      "type": 2
+    },
+    "374": {
+      "groupId": 10138,
+      "nation": 1,
+      "type": 1
+    },
+    "375": {
+      "groupId": 10139,
+      "nation": 1,
+      "type": 1
+    },
+    "376": {
+      "groupId": 20605,
+      "nation": 2,
+      "type": 6
+    },
+    "377": {
+      "groupId": 10722,
+      "nation": 1,
+      "type": 6
+    },
+    "378": {
+      "groupId": 10738,
+      "nation": 1,
+      "type": 7
+    },
+    "379": {
+      "groupId": 40102,
+      "nation": 4,
+      "type": 1
+    },
+    "380": {
+      "groupId": 10717,
+      "nation": 1,
+      "type": 7
+    },
+    "381": {
+      "groupId": 31701,
+      "nation": 3,
+      "type": 17
+    },
+    "382": {
+      "groupId": 30317,
+      "nation": 3,
+      "type": 3
+    },
+    "386": {
+      "groupId": 40804,
+      "nation": 4,
+      "type": 8
+    },
+    "387": {
+      "groupId": 40805,
+      "nation": 4,
+      "type": 8
+    },
+    "388": {
+      "groupId": 40136,
+      "nation": 4,
+      "type": 1
+    },
+    "389": {
+      "groupId": 20129,
+      "nation": 2,
+      "type": 1
+    },
+    "393": {
+      "groupId": 20223,
+      "nation": 2,
+      "type": 2
+    },
+    "394": {
+      "groupId": 90111,
+      "nation": 9,
+      "type": 1
+    },
+    "395": {
+      "groupId": 80104,
+      "nation": 8,
+      "type": 1
+    },
+    "396": {
+      "groupId": 30804,
+      "nation": 3,
+      "type": 8
+    },
+    "397": {
+      "groupId": 30805,
+      "nation": 3,
+      "type": 8
+    },
+    "398": {
+      "groupId": 30806,
+      "nation": 3,
+      "type": 8
+    },
+    "399": {
+      "groupId": 40806,
+      "nation": 4,
+      "type": 8
+    },
+    "400": {
+      "groupId": 40807,
+      "nation": 4,
+      "type": 8
+    },
+    "401": {
+      "groupId": 10520,
+      "nation": 1,
+      "type": 5
+    },
+    "402": {
+      "groupId": 10803,
+      "nation": 1,
+      "type": 8
+    },
+    "403": {
+      "groupId": 10729,
+      "nation": 1,
+      "type": 6
+    },
+    "404": {
+      "groupId": 10222,
+      "nation": 1,
+      "type": 2
+    },
+    "405": {
+      "groupId": 10223,
+      "nation": 1,
+      "type": 2
+    },
+    "406": {
+      "groupId": 10140,
+      "nation": 1,
+      "type": 1
+    },
+    "407": {
+      "groupId": 10135,
+      "nation": 1,
+      "type": 1
+    },
+    "408": {
+      "groupId": 20224,
+      "nation": 2,
+      "type": 2
+    },
+    "409": {
+      "groupId": 10141,
+      "nation": 1,
+      "type": 1
+    },
+    "410": {
+      "groupId": 60502,
+      "nation": 6,
+      "type": 5
+    },
+    "411": {
+      "groupId": 60505,
+      "nation": 6,
+      "type": 5
+    },
+    "412": {
+      "groupId": 60506,
+      "nation": 6,
+      "type": 5
+    },
+    "413": {
+      "groupId": 60302,
+      "nation": 6,
+      "type": 3
+    },
+    "414": {
+      "groupId": 60301,
+      "nation": 6,
+      "type": 3
+    },
+    "415": {
+      "groupId": 60102,
+      "nation": 6,
+      "type": 1
+    },
+    "416": {
+      "groupId": 40808,
+      "nation": 4,
+      "type": 8
+    },
+    "417": {
+      "groupId": 10142,
+      "nation": 1,
+      "type": 1
+    },
+    "423": {
+      "groupId": 20226,
+      "nation": 2,
+      "type": 2
+    },
+    "424": {
+      "groupId": 30181,
+      "nation": 3,
+      "type": 1
+    },
+    "425": {
+      "groupId": 30514,
+      "nation": 3,
+      "type": 5
+    },
+    "426": {
+      "groupId": 30607,
+      "nation": 3,
+      "type": 6
+    },
+    "427": {
+      "groupId": 10143,
+      "nation": 1,
+      "type": 1
+    },
+    "428": {
+      "groupId": 10225,
+      "nation": 1,
+      "type": 2
+    },
+    "429": {
+      "groupId": 30172,
+      "nation": 3,
+      "type": 1
+    },
+    "431": {
+      "groupId": 70102,
+      "nation": 7,
+      "type": 1
+    },
+    "432": {
+      "groupId": 70103,
+      "nation": 7,
+      "type": 1
+    },
+    "433": {
+      "groupId": 70104,
+      "nation": 7,
+      "type": 1
+    },
+    "434": {
+      "groupId": 70202,
+      "nation": 7,
+      "type": 2
+    },
+    "435": {
+      "groupId": 70204,
+      "nation": 7,
+      "type": 2
+    },
+    "436": {
+      "groupId": 70203,
+      "nation": 7,
+      "type": 2
+    },
+    "437": {
+      "groupId": 70501,
+      "nation": 7,
+      "type": 5
+    },
+    "438": {
+      "groupId": 70502,
+      "nation": 7,
+      "type": 5
+    },
+    "440": {
+      "groupId": 70504,
+      "nation": 7,
+      "type": 5
+    },
+    "441": {
+      "groupId": 70505,
+      "nation": 7,
+      "type": 5
+    },
+    "442": {
+      "groupId": 10711,
+      "nation": 1,
+      "type": 7
+    },
+    "443": {
+      "groupId": 10324,
+      "nation": 1,
+      "type": 3
+    },
+    "444": {
+      "groupId": 10144,
+      "nation": 1,
+      "type": 1
+    },
+    "445": {
+      "groupId": 10226,
+      "nation": 1,
+      "type": 2
+    },
+    "446": {
+      "groupId": 10804,
+      "nation": 1,
+      "type": 8
+    },
+    "447": {
+      "groupId": 10655,
+      "nation": 1,
+      "type": 6
+    },
+    "448": {
+      "groupId": 10227,
+      "nation": 1,
+      "type": 2
+    },
+    "449": {
+      "groupId": 30182,
+      "nation": 3,
+      "type": 1
+    },
+    "450": {
+      "groupId": 30183,
+      "nation": 3,
+      "type": 1
+    },
+    "452": {
+      "groupId": 90102,
+      "nation": 9,
+      "type": 1
+    },
+    "453": {
+      "groupId": 80501,
+      "nation": 8,
+      "type": 5
+    },
+    "454": {
+      "groupId": 80202,
+      "nation": 8,
+      "type": 2
+    },
+    "455": {
+      "groupId": 90302,
+      "nation": 9,
+      "type": 3
+    },
+    "456": {
+      "groupId": 90201,
+      "nation": 9,
+      "type": 2
+    },
+    "457": {
+      "groupId": 90103,
+      "nation": 9,
+      "type": 1
+    },
+    "458": {
+      "groupId": 80701,
+      "nation": 8,
+      "type": 7
+    },
+    "460": {
+      "groupId": 20132,
+      "nation": 2,
+      "type": 1
+    },
+    "461": {
+      "groupId": 20509,
+      "nation": 2,
+      "type": 5
+    },
+    "462": {
+      "groupId": 20606,
+      "nation": 2,
+      "type": 6
+    },
+    "463": {
+      "groupId": 20227,
+      "nation": 2,
+      "type": 2
+    },
+    "464": {
+      "groupId": 20510,
+      "nation": 2,
+      "type": 5
+    },
+    "465": {
+      "groupId": 20133,
+      "nation": 2,
+      "type": 1
+    },
+    "466": {
+      "groupId": 40126,
+      "nation": 4,
+      "type": 1
+    },
+    "467": {
+      "groupId": 40809,
+      "nation": 4,
+      "type": 8
+    },
+    "468": {
+      "groupId": 30184,
+      "nation": 3,
+      "type": 1
+    },
+    "469": {
+      "groupId": 30318,
+      "nation": 3,
+      "type": 3
+    },
+    "470": {
+      "groupId": 30608,
+      "nation": 3,
+      "type": 6
+    },
+    "471": {
+      "groupId": 30609,
+      "nation": 3,
+      "type": 6
+    },
+    "472": {
+      "groupId": 31901,
+      "nation": 3,
+      "type": 1
+    },
+    "473": {
+      "groupId": 10723,
+      "nation": 1,
+      "type": 6
+    },
+    "482": {
+      "groupId": 40703,
+      "nation": 4,
+      "type": 7
+    },
+    "483": {
+      "groupId": 40309,
+      "nation": 4,
+      "type": 3
+    },
+    "484": {
+      "groupId": 40810,
+      "nation": 4,
+      "type": 8
+    },
+    "485": {
+      "groupId": 40601,
+      "nation": 4,
+      "type": 6
+    },
+    "486": {
+      "groupId": 40205,
+      "nation": 4,
+      "type": 2
+    },
+    "487": {
+      "groupId": 40124,
+      "nation": 4,
+      "type": 1
+    },
+    "488": {
+      "groupId": 40128,
+      "nation": 4,
+      "type": 1
+    },
+    "489": {
+      "groupId": 60303,
+      "nation": 6,
+      "type": 3
+    },
+    "490": {
+      "groupId": 60103,
+      "nation": 6,
+      "type": 1
+    },
+    "491": {
+      "groupId": 70106,
+      "nation": 7,
+      "type": 1
+    },
+    "492": {
+      "groupId": 40811,
+      "nation": 4,
+      "type": 8
+    },
+    "493": {
+      "groupId": 50204,
+      "nation": 5,
+      "type": 2
+    },
+    "494": {
+      "groupId": 50205,
+      "nation": 5,
+      "type": 2
+    },
+    "495": {
+      "groupId": 20229,
+      "nation": 2,
+      "type": 2
+    },
+    "496": {
+      "groupId": 70301,
+      "nation": 7,
+      "type": 3
+    },
+    "497": {
+      "groupId": 70107,
+      "nation": 7,
+      "type": 1
+    },
+    "498": {
+      "groupId": 70206,
+      "nation": 7,
+      "type": 2
+    },
+    "499": {
+      "groupId": 70108,
+      "nation": 7,
+      "type": 1
+    },
+    "500": {
+      "groupId": 60501,
+      "nation": 6,
+      "type": 5
+    },
+    "501": {
+      "groupId": 60201,
+      "nation": 6,
+      "type": 2
+    },
+    "502": {
+      "groupId": 60701,
+      "nation": 6,
+      "type": 7
+    },
+    "503": {
+      "groupId": 60801,
+      "nation": 6,
+      "type": 8
+    },
+    "504": {
+      "groupId": 60104,
+      "nation": 6,
+      "type": 1
+    },
+    "505": {
+      "groupId": 60105,
+      "nation": 6,
+      "type": 1
+    },
+    "506": {
+      "groupId": 60106,
+      "nation": 6,
+      "type": 1
+    },
+    "507": {
+      "groupId": 30185,
+      "nation": 3,
+      "type": 1
+    },
+    "508": {
+      "groupId": 10145,
+      "nation": 1,
+      "type": 1
+    },
+    "509": {
+      "groupId": 10146,
+      "nation": 1,
+      "type": 1
+    },
+    "511": {
+      "groupId": 10714,
+      "nation": 1,
+      "type": 7
+    },
+    "512": {
+      "groupId": 10314,
+      "nation": 1,
+      "type": 3
+    },
+    "513": {
+      "groupId": 10806,
+      "nation": 1,
+      "type": 8
+    },
+    "514": {
+      "groupId": 10229,
+      "nation": 1,
+      "type": 2
+    },
+    "515": {
+      "groupId": 10147,
+      "nation": 1,
+      "type": 1
+    },
+    "517": {
+      "groupId": 30186,
+      "nation": 3,
+      "type": 1
+    },
+    "518": {
+      "groupId": 10148,
+      "nation": 1,
+      "type": 1
+    },
+    "519": {
+      "groupId": 10807,
+      "nation": 1,
+      "type": 8
+    },
+    "520": {
+      "groupId": 30712,
+      "nation": 3,
+      "type": 7
+    },
+    "521": {
+      "groupId": 10312,
+      "nation": 1,
+      "type": 3
+    },
+    "522": {
+      "groupId": 80107,
+      "nation": 8,
+      "type": 1
+    },
+    "523": {
+      "groupId": 80108,
+      "nation": 8,
+      "type": 1
+    },
+    "524": {
+      "groupId": 90301,
+      "nation": 9,
+      "type": 3
+    },
+    "525": {
+      "groupId": 40206,
+      "nation": 4,
+      "type": 2
+    },
+    "526": {
+      "groupId": 40602,
+      "nation": 4,
+      "type": 6
+    },
+    "527": {
+      "groupId": 40310,
+      "nation": 4,
+      "type": 3
+    },
+    "528": {
+      "groupId": 40812,
+      "nation": 4,
+      "type": 8
+    },
+    "529": {
+      "groupId": 40503,
+      "nation": 4,
+      "type": 5
+    },
+    "530": {
+      "groupId": 20230,
+      "nation": 2,
+      "type": 2
+    },
+    "531": {
+      "groupId": 50207,
+      "nation": 5,
+      "type": 2
+    },
+    "532": {
+      "groupId": 50208,
+      "nation": 5,
+      "type": 2
+    },
+    "533": {
+      "groupId": 10149,
+      "nation": 1,
+      "type": 1
+    },
+    "534": {
+      "groupId": 50601,
+      "nation": 5,
+      "type": 6
+    },
+    "535": {
+      "groupId": 70110,
+      "nation": 7,
+      "type": 1
+    },
+    "536": {
+      "groupId": 70506,
+      "nation": 7,
+      "type": 5
+    },
+    "537": {
+      "groupId": 70109,
+      "nation": 7,
+      "type": 1
+    },
+    "538": {
+      "groupId": 70701,
+      "nation": 7,
+      "type": 7
+    },
+    "539": {
+      "groupId": 71801,
+      "nation": 7,
+      "type": 18
+    },
+    "540": {
+      "groupId": 60702,
+      "nation": 6,
+      "type": 7
+    },
+    "541": {
+      "groupId": 60107,
+      "nation": 6,
+      "type": 1
+    },
+    "542": {
+      "groupId": 60304,
+      "nation": 6,
+      "type": 3
+    },
+    "543": {
+      "groupId": 40403,
+      "nation": 4,
+      "type": 4
+    },
+    "544": {
+      "groupId": 40404,
+      "nation": 4,
+      "type": 4
+    },
+    "545": {
+      "groupId": 40504,
+      "nation": 4,
+      "type": 5
+    },
+    "546": {
+      "groupId": 40311,
+      "nation": 4,
+      "type": 3
+    },
+    "547": {
+      "groupId": 40207,
+      "nation": 4,
+      "type": 2
+    },
+    "548": {
+      "groupId": 40208,
+      "nation": 4,
+      "type": 2
+    },
+    "550": {
+      "groupId": 20134,
+      "nation": 2,
+      "type": 1
+    },
+    "551": {
+      "groupId": 20231,
+      "nation": 2,
+      "type": 2
+    },
+    "553": {
+      "groupId": 20712,
+      "nation": 2,
+      "type": 7
+    },
+    "554": {
+      "groupId": 20511,
+      "nation": 2,
+      "type": 5
+    },
+    "555": {
+      "groupId": 90701,
+      "nation": 9,
+      "type": 7
+    },
+    "556": {
+      "groupId": 90113,
+      "nation": 9,
+      "type": 1
+    },
+    "557": {
+      "groupId": 20232,
+      "nation": 2,
+      "type": 2
+    },
+    "558": {
+      "groupId": 60802,
+      "nation": 6,
+      "type": 8
+    },
+    "559": {
+      "groupId": 60202,
+      "nation": 6,
+      "type": 2
+    },
+    "560": {
+      "groupId": 60305,
+      "nation": 6,
+      "type": 3
+    },
+    "561": {
+      "groupId": 60503,
+      "nation": 6,
+      "type": 5
+    },
+    "562": {
+      "groupId": 60108,
+      "nation": 6,
+      "type": 1
+    },
+    "563": {
+      "groupId": 60109,
+      "nation": 6,
+      "type": 1
+    },
+    "564": {
+      "groupId": 40116,
+      "nation": 4,
+      "type": 1
+    },
+    "566": {
+      "groupId": 40405,
+      "nation": 4,
+      "type": 4
+    },
+    "567": {
+      "groupId": 30188,
+      "nation": 3,
+      "type": 1
+    },
+    "569": {
+      "groupId": 20135,
+      "nation": 2,
+      "type": 1
+    },
+    "570": {
+      "groupId": 20607,
+      "nation": 2,
+      "type": 6
+    },
+    "571": {
+      "groupId": 960001,
+      "nation": 96,
+      "type": 22
+    },
+    "572": {
+      "groupId": 10712,
+      "nation": 1,
+      "type": 7
+    },
+    "573": {
+      "groupId": 10727,
+      "nation": 1,
+      "type": 6
+    },
+    "574": {
+      "groupId": 10710,
+      "nation": 1,
+      "type": 7
+    },
+    "575": {
+      "groupId": 10326,
+      "nation": 1,
+      "type": 3
+    },
+    "576": {
+      "groupId": 10150,
+      "nation": 1,
+      "type": 1
+    },
+    "577": {
+      "groupId": 70205,
+      "nation": 7,
+      "type": 2
+    },
+    "578": {
+      "groupId": 20608,
+      "nation": 2,
+      "type": 6
+    },
+    "579": {
+      "groupId": 50602,
+      "nation": 5,
+      "type": 6
+    },
+    "580": {
+      "groupId": 51901,
+      "nation": 5,
+      "type": 19
+    },
+    "581": {
+      "groupId": 20707,
+      "nation": 2,
+      "type": 7
+    },
+    "582": {
+      "groupId": 20514,
+      "nation": 2,
+      "type": 5
+    },
+    "583": {
+      "groupId": 20602,
+      "nation": 2,
+      "type": 6
+    },
+    "584": {
+      "groupId": 20233,
+      "nation": 2,
+      "type": 2
+    },
+    "585": {
+      "groupId": 20136,
+      "nation": 2,
+      "type": 1
+    },
+    "586": {
+      "groupId": 70302,
+      "nation": 7,
+      "type": 3
+    },
+    "587": {
+      "groupId": 70507,
+      "nation": 7,
+      "type": 5
+    },
+    "588": {
+      "groupId": 70207,
+      "nation": 7,
+      "type": 2
+    },
+    "590": {
+      "groupId": 40199,
+      "nation": 4,
+      "type": 1
+    },
+    "591": {
+      "groupId": 40603,
+      "nation": 4,
+      "type": 6
+    },
+    "592": {
+      "groupId": 40210,
+      "nation": 4,
+      "type": 2
+    },
+    "593": {
+      "groupId": 40505,
+      "nation": 4,
+      "type": 5
+    },
+    "595": {
+      "groupId": 60507,
+      "nation": 6,
+      "type": 5
+    },
+    "596": {
+      "groupId": 60110,
+      "nation": 6,
+      "type": 1
+    },
+    "597": {
+      "groupId": 60306,
+      "nation": 6,
+      "type": 3
+    },
+    "598": {
+      "groupId": 90202,
+      "nation": 9,
+      "type": 2
+    },
+    "599": {
+      "groupId": 80702,
+      "nation": 8,
+      "type": 7
+    },
+    "600": {
+      "groupId": 80301,
+      "nation": 8,
+      "type": 3
+    },
+    "601": {
+      "groupId": 90104,
+      "nation": 9,
+      "type": 1
+    },
+    "602": {
+      "groupId": 80502,
+      "nation": 8,
+      "type": 5
+    },
+    "603": {
+      "groupId": 80203,
+      "nation": 8,
+      "type": 2
+    },
+    "604": {
+      "groupId": 90502,
+      "nation": 9,
+      "type": 5
+    },
+    "605": {
+      "groupId": 30319,
+      "nation": 3,
+      "type": 3
+    },
+    "606": {
+      "groupId": 30513,
+      "nation": 3,
+      "type": 5
+    },
+    "607": {
+      "groupId": 30189,
+      "nation": 3,
+      "type": 1
+    },
+    "608": {
+      "groupId": 30190,
+      "nation": 3,
+      "type": 1
+    },
+    "609": {
+      "groupId": 10231,
+      "nation": 1,
+      "type": 2
+    },
+    "610": {
+      "groupId": 960003,
+      "nation": 96,
+      "type": 23
+    },
+    "611": {
+      "groupId": 960004,
+      "nation": 96,
+      "type": 22
+    },
+    "612": {
+      "groupId": 960006,
+      "nation": 96,
+      "type": 23
+    },
+    "613": {
+      "groupId": 960002,
+      "nation": 96,
+      "type": 24
+    },
+    "614": {
+      "groupId": 960005,
+      "nation": 96,
+      "type": 22
+    },
+    "615": {
+      "groupId": 10151,
+      "nation": 1,
+      "type": 1
+    },
+    "616": {
+      "groupId": 11802,
+      "nation": 1,
+      "type": 18
+    },
+    "617": {
+      "groupId": 10401,
+      "nation": 1,
+      "type": 4
+    },
+    "618": {
+      "groupId": 10730,
+      "nation": 1,
+      "type": 6
+    },
+    "619": {
+      "groupId": 10327,
+      "nation": 1,
+      "type": 3
+    },
+    "620": {
+      "groupId": 10808,
+      "nation": 1,
+      "type": 8
+    },
+    "621": {
+      "groupId": 50401,
+      "nation": 5,
+      "type": 4
+    },
+    "622": {
+      "groupId": 50209,
+      "nation": 5,
+      "type": 2
+    },
+    "623": {
+      "groupId": 50105,
+      "nation": 5,
+      "type": 1
+    },
+    "624": {
+      "groupId": 50106,
+      "nation": 5,
+      "type": 1
+    },
+    "625": {
+      "groupId": 50107,
+      "nation": 5,
+      "type": 1
+    },
+    "626": {
+      "groupId": 70111,
+      "nation": 7,
+      "type": 1
+    },
+    "627": {
+      "groupId": 70112,
+      "nation": 7,
+      "type": 1
+    },
+    "628": {
+      "groupId": 70508,
+      "nation": 7,
+      "type": 5
+    },
+    "630": {
+      "groupId": 20137,
+      "nation": 2,
+      "type": 1
+    },
+    "631": {
+      "groupId": 20234,
+      "nation": 2,
+      "type": 2
+    },
+    "632": {
+      "groupId": 20313,
+      "nation": 2,
+      "type": 3
+    },
+    "640": {
+      "groupId": 40314,
+      "nation": 4,
+      "type": 3
+    },
+    "641": {
+      "groupId": 80503,
+      "nation": 8,
+      "type": 5
+    },
+    "642": {
+      "groupId": 90107,
+      "nation": 9,
+      "type": 1
+    },
+    "643": {
+      "groupId": 80302,
+      "nation": 8,
+      "type": 3
+    },
+    "645": {
+      "groupId": 90105,
+      "nation": 9,
+      "type": 1
+    },
+    "646": {
+      "groupId": 90106,
+      "nation": 9,
+      "type": 1
+    },
+    "648": {
+      "groupId": 40406,
+      "nation": 4,
+      "type": 4
+    },
+    "649": {
+      "groupId": 40147,
+      "nation": 4,
+      "type": 1
+    },
+    "650": {
+      "groupId": 40813,
+      "nation": 4,
+      "type": 8
+    },
+    "651": {
+      "groupId": 40143,
+      "nation": 4,
+      "type": 1
+    },
+    "652": {
+      "groupId": 90402,
+      "nation": 9,
+      "type": 4
+    },
+    "653": {
+      "groupId": 90114,
+      "nation": 9,
+      "type": 1
+    },
+    "654": {
+      "groupId": 90303,
+      "nation": 9,
+      "type": 3
+    },
+    "655": {
+      "groupId": 10328,
+      "nation": 1,
+      "type": 3
+    },
+    "657": {
+      "groupId": 10233,
+      "nation": 1,
+      "type": 2
+    },
+    "658": {
+      "groupId": 10809,
+      "nation": 1,
+      "type": 8
+    },
+    "659": {
+      "groupId": 10152,
+      "nation": 1,
+      "type": 1
+    },
+    "660": {
+      "groupId": 30715,
+      "nation": 3,
+      "type": 7
+    },
+    "661": {
+      "groupId": 30225,
+      "nation": 3,
+      "type": 2
+    },
+    "662": {
+      "groupId": 30226,
+      "nation": 3,
+      "type": 2
+    },
+    "663": {
+      "groupId": 30191,
+      "nation": 3,
+      "type": 1
+    },
+    "664": {
+      "groupId": 960007,
+      "nation": 96,
+      "type": 24
+    },
+    "665": {
+      "groupId": 960008,
+      "nation": 96,
+      "type": 23
+    },
+    "666": {
+      "groupId": 960009,
+      "nation": 96,
+      "type": 22
+    },
+    "667": {
+      "groupId": 960010,
+      "nation": 96,
+      "type": 23
+    },
+    "668": {
+      "groupId": 960011,
+      "nation": 96,
+      "type": 22
+    },
+    "669": {
+      "groupId": 40704,
+      "nation": 4,
+      "type": 7
+    },
+    "670": {
+      "groupId": 40152,
+      "nation": 4,
+      "type": 1
+    },
+    "671": {
+      "groupId": 40211,
+      "nation": 4,
+      "type": 2
+    },
+    "672": {
+      "groupId": 40109,
+      "nation": 4,
+      "type": 1
+    },
+    "673": {
+      "groupId": 40111,
+      "nation": 4,
+      "type": 1
+    },
+    "674": {
+      "groupId": 50301,
+      "nation": 5,
+      "type": 3
+    },
+    "675": {
+      "groupId": 50210,
+      "nation": 5,
+      "type": 2
+    },
+    "676": {
+      "groupId": 50108,
+      "nation": 5,
+      "type": 1
+    },
+    "677": {
+      "groupId": 50109,
+      "nation": 5,
+      "type": 1
+    },
+    "678": {
+      "groupId": 60508,
+      "nation": 6,
+      "type": 5
+    },
+    "679": {
+      "groupId": 60803,
+      "nation": 6,
+      "type": 8
+    },
+    "680": {
+      "groupId": 60111,
+      "nation": 6,
+      "type": 1
+    },
+    "681": {
+      "groupId": 60203,
+      "nation": 6,
+      "type": 2
+    },
+    "682": {
+      "groupId": 10713,
+      "nation": 1,
+      "type": 7
+    },
+    "683": {
+      "groupId": 10234,
+      "nation": 1,
+      "type": 2
+    },
+    "684": {
+      "groupId": 10153,
+      "nation": 1,
+      "type": 1
+    },
+    "685": {
+      "groupId": 70509,
+      "nation": 7,
+      "type": 5
+    },
+    "686": {
+      "groupId": 110201,
+      "nation": 11,
+      "type": 2
+    },
+    "687": {
+      "groupId": 110101,
+      "nation": 11,
+      "type": 1
+    },
+    "688": {
+      "groupId": 70208,
+      "nation": 7,
+      "type": 2
+    },
+    "689": {
+      "groupId": 20138,
+      "nation": 2,
+      "type": 1
+    },
+    "690": {
+      "groupId": 20235,
+      "nation": 2,
+      "type": 2
+    },
+    "691": {
+      "groupId": 20139,
+      "nation": 2,
+      "type": 1
+    },
+    "692": {
+      "groupId": 20236,
+      "nation": 2,
+      "type": 2
+    },
+    "694": {
+      "groupId": 40407,
+      "nation": 4,
+      "type": 4
+    },
+    "695": {
+      "groupId": 40814,
+      "nation": 4,
+      "type": 8
+    },
+    "696": {
+      "groupId": 40113,
+      "nation": 4,
+      "type": 1
+    },
+    "698": {
+      "groupId": 80401,
+      "nation": 8,
+      "type": 4
+    },
+    "699": {
+      "groupId": 80601,
+      "nation": 8,
+      "type": 6
+    },
+    "700": {
+      "groupId": 80303,
+      "nation": 8,
+      "type": 3
+    },
+    "701": {
+      "groupId": 80105,
+      "nation": 8,
+      "type": 1
+    },
+    "702": {
+      "groupId": 80204,
+      "nation": 8,
+      "type": 2
+    },
+    "703": {
+      "groupId": 30716,
+      "nation": 3,
+      "type": 7
+    },
+    "704": {
+      "groupId": 30192,
+      "nation": 3,
+      "type": 1
+    },
+    "705": {
+      "groupId": 31702,
+      "nation": 3,
+      "type": 17
+    },
+    "706": {
+      "groupId": 30516,
+      "nation": 3,
+      "type": 5
+    },
+    "707": {
+      "groupId": 30320,
+      "nation": 3,
+      "type": 3
+    },
+    "708": {
+      "groupId": 30227,
+      "nation": 3,
+      "type": 2
+    },
+    "709": {
+      "groupId": 960012,
+      "nation": 96,
+      "type": 24
+    },
+    "710": {
+      "groupId": 960013,
+      "nation": 96,
+      "type": 23
+    },
+    "711": {
+      "groupId": 960014,
+      "nation": 96,
+      "type": 24
+    },
+    "712": {
+      "groupId": 960015,
+      "nation": 96,
+      "type": 23
+    },
+    "713": {
+      "groupId": 960016,
+      "nation": 96,
+      "type": 22
+    },
+    "715": {
+      "groupId": 10716,
+      "nation": 1,
+      "type": 7
+    },
+    "716": {
+      "groupId": 10725,
+      "nation": 1,
+      "type": 6
+    },
+    "718": {
+      "groupId": 10155,
+      "nation": 1,
+      "type": 1
+    },
+    "719": {
+      "groupId": 10235,
+      "nation": 1,
+      "type": 2
+    },
+    "720": {
+      "groupId": 60509,
+      "nation": 6,
+      "type": 5
+    },
+    "721": {
+      "groupId": 60204,
+      "nation": 6,
+      "type": 2
+    },
+    "722": {
+      "groupId": 60112,
+      "nation": 6,
+      "type": 1
+    },
+    "723": {
+      "groupId": 30194,
+      "nation": 3,
+      "type": 1
+    },
+    "725": {
+      "groupId": 50302,
+      "nation": 5,
+      "type": 3
+    },
+    "726": {
+      "groupId": 50212,
+      "nation": 5,
+      "type": 2
+    },
+    "727": {
+      "groupId": 70303,
+      "nation": 7,
+      "type": 3
+    },
+    "728": {
+      "groupId": 70113,
+      "nation": 7,
+      "type": 1
+    },
+    "729": {
+      "groupId": 70209,
+      "nation": 7,
+      "type": 2
+    },
+    "730": {
+      "groupId": 70210,
+      "nation": 7,
+      "type": 2
+    },
+    "731": {
+      "groupId": 30717,
+      "nation": 3,
+      "type": 7
+    },
+    "732": {
+      "groupId": 30228,
+      "nation": 3,
+      "type": 2
+    },
+    "733": {
+      "groupId": 30229,
+      "nation": 3,
+      "type": 2
+    },
+    "735": {
+      "groupId": 40507,
+      "nation": 4,
+      "type": 5
+    },
+    "736": {
+      "groupId": 40815,
+      "nation": 4,
+      "type": 8
+    },
+    "737": {
+      "groupId": 40317,
+      "nation": 4,
+      "type": 3
+    },
+    "738": {
+      "groupId": 40114,
+      "nation": 4,
+      "type": 1
+    },
+    "739": {
+      "groupId": 40115,
+      "nation": 4,
+      "type": 1
+    },
+    "743": {
+      "groupId": 81801,
+      "nation": 8,
+      "type": 18
+    },
+    "744": {
+      "groupId": 80602,
+      "nation": 8,
+      "type": 6
+    },
+    "745": {
+      "groupId": 80106,
+      "nation": 8,
+      "type": 1
+    },
+    "746": {
+      "groupId": 20237,
+      "nation": 2,
+      "type": 2
+    },
+    "747": {
+      "groupId": 20314,
+      "nation": 2,
+      "type": 3
+    },
+    "748": {
+      "groupId": 20115,
+      "nation": 2,
+      "type": 1
+    },
+    "749": {
+      "groupId": 10156,
+      "nation": 1,
+      "type": 1
+    },
+    "750": {
+      "groupId": 10157,
+      "nation": 1,
+      "type": 1
+    },
+    "751": {
+      "groupId": 10236,
+      "nation": 1,
+      "type": 2
+    },
+    "752": {
+      "groupId": 10720,
+      "nation": 1,
+      "type": 7
+    },
+    "753": {
+      "groupId": 10158,
+      "nation": 1,
+      "type": 1
+    },
+    "754": {
+      "groupId": 20238,
+      "nation": 2,
+      "type": 2
+    },
+    "755": {
+      "groupId": 30409,
+      "nation": 3,
+      "type": 4
+    },
+    "756": {
+      "groupId": 31703,
+      "nation": 3,
+      "type": 17
+    },
+    "757": {
+      "groupId": 20140,
+      "nation": 2,
+      "type": 1
+    },
+    "760": {
+      "groupId": 960020,
+      "nation": 96,
+      "type": 23
+    },
+    "761": {
+      "groupId": 960021,
+      "nation": 96,
+      "type": 24
+    },
+    "762": {
+      "groupId": 960018,
+      "nation": 96,
+      "type": 22
+    },
+    "763": {
+      "groupId": 960017,
+      "nation": 96,
+      "type": 23
+    },
+    "764": {
+      "groupId": 960019,
+      "nation": 96,
+      "type": 24
+    },
+    "004": {
+      "groupId": 10102,
+      "nation": 1,
+      "type": 1
+    },
+    "005": {
+      "groupId": 10103,
+      "nation": 1,
+      "type": 1
+    },
+    "006": {
+      "groupId": 10104,
+      "nation": 1,
+      "type": 1
+    },
+    "007": {
+      "groupId": 10105,
+      "nation": 1,
+      "type": 1
+    },
+    "008": {
+      "groupId": 10106,
+      "nation": 1,
+      "type": 1
+    },
+    "009": {
+      "groupId": 10107,
+      "nation": 1,
+      "type": 1
+    },
+    "010": {
+      "groupId": 10108,
+      "nation": 1,
+      "type": 1
+    },
+    "011": {
+      "groupId": 10109,
+      "nation": 1,
+      "type": 1
+    },
+    "012": {
+      "groupId": 10110,
+      "nation": 1,
+      "type": 1
+    },
+    "013": {
+      "groupId": 10111,
+      "nation": 1,
+      "type": 1
+    },
+    "014": {
+      "groupId": 10112,
+      "nation": 1,
+      "type": 1
+    },
+    "015": {
+      "groupId": 10113,
+      "nation": 1,
+      "type": 1
+    },
+    "016": {
+      "groupId": 10114,
+      "nation": 1,
+      "type": 1
+    },
+    "017": {
+      "groupId": 10115,
+      "nation": 1,
+      "type": 1
+    },
+    "018": {
+      "groupId": 10116,
+      "nation": 1,
+      "type": 1
+    },
+    "019": {
+      "groupId": 10117,
+      "nation": 1,
+      "type": 1
+    },
+    "026": {
+      "groupId": 10124,
+      "nation": 1,
+      "type": 1
+    },
+    "027": {
+      "groupId": 10125,
+      "nation": 1,
+      "type": 1
+    },
+    "028": {
+      "groupId": 10126,
+      "nation": 1,
+      "type": 1
+    },
+    "029": {
+      "groupId": 10201,
+      "nation": 1,
+      "type": 2
+    },
+    "030": {
+      "groupId": 10202,
+      "nation": 1,
+      "type": 2
+    },
+    "031": {
+      "groupId": 10203,
+      "nation": 1,
+      "type": 2
+    },
+    "032": {
+      "groupId": 10204,
+      "nation": 1,
+      "type": 2
+    },
+    "033": {
+      "groupId": 10205,
+      "nation": 1,
+      "type": 2
+    },
+    "034": {
+      "groupId": 10206,
+      "nation": 1,
+      "type": 2
+    },
+    "035": {
+      "groupId": 10207,
+      "nation": 1,
+      "type": 2
+    },
+    "036": {
+      "groupId": 10208,
+      "nation": 1,
+      "type": 2
+    },
+    "037": {
+      "groupId": 10209,
+      "nation": 1,
+      "type": 2
+    },
+    "038": {
+      "groupId": 10210,
+      "nation": 1,
+      "type": 2
+    },
+    "039": {
+      "groupId": 10301,
+      "nation": 1,
+      "type": 3
+    },
+    "040": {
+      "groupId": 10302,
+      "nation": 1,
+      "type": 3
+    },
+    "041": {
+      "groupId": 10303,
+      "nation": 1,
+      "type": 3
+    },
+    "042": {
+      "groupId": 10304,
+      "nation": 1,
+      "type": 3
+    },
+    "043": {
+      "groupId": 10305,
+      "nation": 1,
+      "type": 3
+    },
+    "044": {
+      "groupId": 10306,
+      "nation": 1,
+      "type": 3
+    },
+    "045": {
+      "groupId": 10307,
+      "nation": 1,
+      "type": 3
+    },
+    "046": {
+      "groupId": 10308,
+      "nation": 1,
+      "type": 3
+    },
+    "047": {
+      "groupId": 10309,
+      "nation": 1,
+      "type": 3
+    },
+    "048": {
+      "groupId": 10310,
+      "nation": 1,
+      "type": 3
+    },
+    "049": {
+      "groupId": 10311,
+      "nation": 1,
+      "type": 3
+    },
+    "050": {
+      "groupId": 10316,
+      "nation": 1,
+      "type": 3
+    },
+    "052": {
+      "groupId": 10501,
+      "nation": 1,
+      "type": 5
+    },
+    "053": {
+      "groupId": 10502,
+      "nation": 1,
+      "type": 5
+    },
+    "054": {
+      "groupId": 10503,
+      "nation": 1,
+      "type": 5
+    },
+    "055": {
+      "groupId": 10504,
+      "nation": 1,
+      "type": 5
+    },
+    "058": {
+      "groupId": 10507,
+      "nation": 1,
+      "type": 5
+    },
+    "059": {
+      "groupId": 10508,
+      "nation": 1,
+      "type": 5
+    },
+    "060": {
+      "groupId": 10509,
+      "nation": 1,
+      "type": 5
+    },
+    "061": {
+      "groupId": 10510,
+      "nation": 1,
+      "type": 5
+    },
+    "062": {
+      "groupId": 10511,
+      "nation": 1,
+      "type": 5
+    },
+    "063": {
+      "groupId": 10512,
+      "nation": 1,
+      "type": 5
+    },
+    "064": {
+      "groupId": 10513,
+      "nation": 1,
+      "type": 5
+    },
+    "065": {
+      "groupId": 10514,
+      "nation": 1,
+      "type": 5
+    },
+    "066": {
+      "groupId": 10515,
+      "nation": 1,
+      "type": 5
+    },
+    "068": {
+      "groupId": 10517,
+      "nation": 1,
+      "type": 5
+    },
+    "070": {
+      "groupId": 10601,
+      "nation": 1,
+      "type": 6
+    },
+    "071": {
+      "groupId": 10602,
+      "nation": 1,
+      "type": 6
+    },
+    "072": {
+      "groupId": 10701,
+      "nation": 1,
+      "type": 6
+    },
+    "073": {
+      "groupId": 10702,
+      "nation": 1,
+      "type": 7
+    },
+    "074": {
+      "groupId": 10703,
+      "nation": 1,
+      "type": 7
+    },
+    "075": {
+      "groupId": 10704,
+      "nation": 1,
+      "type": 6
+    },
+    "076": {
+      "groupId": 10705,
+      "nation": 1,
+      "type": 7
+    },
+    "077": {
+      "groupId": 10706,
+      "nation": 1,
+      "type": 7
+    },
+    "078": {
+      "groupId": 10707,
+      "nation": 1,
+      "type": 7
+    },
+    "079": {
+      "groupId": 10708,
+      "nation": 1,
+      "type": 7
+    },
+    "080": {
+      "groupId": 11201,
+      "nation": 1,
+      "type": 12
+    },
+    "081": {
+      "groupId": 20101,
+      "nation": 2,
+      "type": 1
+    },
+    "082": {
+      "groupId": 20102,
+      "nation": 2,
+      "type": 1
+    },
+    "083": {
+      "groupId": 20103,
+      "nation": 2,
+      "type": 1
+    },
+    "086": {
+      "groupId": 20106,
+      "nation": 2,
+      "type": 1
+    },
+    "087": {
+      "groupId": 20107,
+      "nation": 2,
+      "type": 1
+    },
+    "088": {
+      "groupId": 20108,
+      "nation": 2,
+      "type": 1
+    },
+    "089": {
+      "groupId": 20109,
+      "nation": 2,
+      "type": 1
+    },
+    "090": {
+      "groupId": 20110,
+      "nation": 2,
+      "type": 1
+    },
+    "091": {
+      "groupId": 20111,
+      "nation": 2,
+      "type": 1
+    },
+    "092": {
+      "groupId": 20112,
+      "nation": 2,
+      "type": 1
+    },
+    "093": {
+      "groupId": 20113,
+      "nation": 2,
+      "type": 1
+    },
+    "094": {
+      "groupId": 20114,
+      "nation": 2,
+      "type": 1
+    },
+    "096": {
+      "groupId": 20116,
+      "nation": 2,
+      "type": 1
+    },
+    "099": {
+      "groupId": 20119,
+      "nation": 2,
+      "type": 1
+    },
+    "Plan001": {
+      "groupId": 29901,
+      "nation": 2,
+      "type": 2
+    },
+    "Plan002": {
+      "groupId": 29902,
+      "nation": 2,
+      "type": 5
+    },
+    "Plan003": {
+      "groupId": 39901,
+      "nation": 3,
+      "type": 3
+    },
+    "Plan004": {
+      "groupId": 39902,
+      "nation": 3,
+      "type": 5
+    },
+    "Plan005": {
+      "groupId": 49901,
+      "nation": 4,
+      "type": 3
+    },
+    "Plan006": {
+      "groupId": 89901,
+      "nation": 8,
+      "type": 3
+    },
+    "Plan007": {
+      "groupId": 19901,
+      "nation": 1,
+      "type": 2
+    },
+    "Plan008": {
+      "groupId": 19902,
+      "nation": 1,
+      "type": 5
+    },
+    "Plan009": {
+      "groupId": 39903,
+      "nation": 3,
+      "type": 1
+    },
+    "Plan010": {
+      "groupId": 39904,
+      "nation": 3,
+      "type": 18
+    },
+    "Plan011": {
+      "groupId": 49902,
+      "nation": 4,
+      "type": 5
+    },
+    "Plan012": {
+      "groupId": 99901,
+      "nation": 9,
+      "type": 5
+    },
+    "Plan013": {
+      "groupId": 29903,
+      "nation": 2,
+      "type": 3
+    },
+    "Plan014": {
+      "groupId": 29904,
+      "nation": 2,
+      "type": 3
+    },
+    "Plan015": {
+      "groupId": 49903,
+      "nation": 4,
+      "type": 2
+    },
+    "Plan016": {
+      "groupId": 49904,
+      "nation": 4,
+      "type": 4
+    },
+    "Plan017": {
+      "groupId": 89902,
+      "nation": 8,
+      "type": 5
+    },
+    "Plan018": {
+      "groupId": 19903,
+      "nation": 1,
+      "type": 3
+    },
+    "Plan019": {
+      "groupId": 39905,
+      "nation": 3,
+      "type": 7
+    },
+    "Plan020": {
+      "groupId": 49905,
+      "nation": 4,
+      "type": 18
+    },
+    "Plan021": {
+      "groupId": 49906,
+      "nation": 4,
+      "type": 7
+    },
+    "Plan022": {
+      "groupId": 69901,
+      "nation": 6,
+      "type": 5
+    },
+    "Plan023": {
+      "groupId": 29905,
+      "nation": 2,
+      "type": 2
+    },
+    "Plan024": {
+      "groupId": 49907,
+      "nation": 4,
+      "type": 4
+    },
+    "Plan025": {
+      "groupId": 59901,
+      "nation": 5,
+      "type": 2
+    },
+    "Plan026": {
+      "groupId": 79901,
+      "nation": 7,
+      "type": 7
+    },
+    "Plan027": {
+      "groupId": 89903,
+      "nation": 8,
+      "type": 18
+    },
+    "Plan028": {
+      "groupId": 19904,
+      "nation": 1,
+      "type": 10
+    },
+    "Plan029": {
+      "groupId": 39906,
+      "nation": 3,
+      "type": 2
+    },
+    "Plan030": {
+      "groupId": 49908,
+      "nation": 4,
+      "type": 1
+    },
+    "Plan031": {
+      "groupId": 49909,
+      "nation": 4,
+      "type": 3
+    },
+    "Plan032": {
+      "groupId": 99902,
+      "nation": 9,
+      "type": 5
+    },
+    "Plan033": {
+      "groupId": 19905,
+      "nation": 1,
+      "type": 1
+    },
+    "Plan034": {
+      "groupId": 39907,
+      "nation": 3,
+      "type": 5
+    },
+    "Plan035": {
+      "groupId": 69902,
+      "nation": 6,
+      "type": 3
+    },
+    "Plan036": {
+      "groupId": 79902,
+      "nation": 7,
+      "type": 7
+    },
+    "Plan037": {
+      "groupId": 89904,
+      "nation": 8,
+      "type": 2
+    },
+    "Plan038": {
+      "groupId": 19906,
+      "nation": 1,
+      "type": 5
+    },
+    "Plan039": {
+      "groupId": 49910,
+      "nation": 4,
+      "type": 5
+    },
+    "Plan040": {
+      "groupId": 69903,
+      "nation": 6,
+      "type": 1
+    },
+    "Plan041": {
+      "groupId": 79903,
+      "nation": 7,
+      "type": 2
+    },
+    "Plan042": {
+      "groupId": 119901,
+      "nation": 11,
+      "type": 3
+    },
+    "Plan043": {
+      "groupId": 29906,
+      "nation": 2,
+      "type": 4
+    },
+    "Plan044": {
+      "groupId": 39908,
+      "nation": 3,
+      "type": 2
+    },
+    "Plan045": {
+      "groupId": 49911,
+      "nation": 4,
+      "type": 7
+    },
+    "Plan046": {
+      "groupId": 89905,
+      "nation": 8,
+      "type": 1
+    },
+    "Plan047": {
+      "groupId": 129901,
+      "nation": 12,
+      "type": 5
+    },
+    "META001": {
+      "groupId": 970701,
+      "nation": 97,
+      "type": 7
+    },
+    "META002": {
+      "groupId": 970702,
+      "nation": 97,
+      "type": 7
+    },
+    "META003": {
+      "groupId": 970201,
+      "nation": 97,
+      "type": 2
+    },
+    "META004": {
+      "groupId": 970703,
+      "nation": 97,
+      "type": 7
+    },
+    "META005": {
+      "groupId": 970501,
+      "nation": 97,
+      "type": 5
+    },
+    "META006": {
+      "groupId": 970601,
+      "nation": 97,
+      "type": 6
+    },
+    "META007": {
+      "groupId": 970401,
+      "nation": 97,
+      "type": 4
+    },
+    "META008": {
+      "groupId": 970602,
+      "nation": 97,
+      "type": 6
+    },
+    "META009": {
+      "groupId": 970402,
+      "nation": 97,
+      "type": 4
+    },
+    "META010": {
+      "groupId": 970502,
+      "nation": 97,
+      "type": 5
+    },
+    "META011": {
+      "groupId": 970202,
+      "nation": 97,
+      "type": 2
+    },
+    "META012": {
+      "groupId": 970403,
+      "nation": 97,
+      "type": 4
+    },
+    "META013": {
+      "groupId": 970301,
+      "nation": 97,
+      "type": 3
+    },
+    "META014": {
+      "groupId": 970404,
+      "nation": 97,
+      "type": 4
+    },
+    "META015": {
+      "groupId": 970101,
+      "nation": 97,
+      "type": 1
+    },
+    "META016": {
+      "groupId": 970102,
+      "nation": 97,
+      "type": 1
+    },
+    "META017": {
+      "groupId": 970503,
+      "nation": 97,
+      "type": 4
+    },
+    "META018": {
+      "groupId": 970203,
+      "nation": 97,
+      "type": 2
+    },
+    "META019": {
+      "groupId": 970504,
+      "nation": 97,
+      "type": 5
+    },
+    "META020": {
+      "groupId": 970204,
+      "nation": 97,
+      "type": 2
+    },
+    "META021": {
+      "groupId": 970801,
+      "nation": 97,
+      "type": 8
+    },
+    "META022": {
+      "groupId": 971201,
+      "nation": 97,
+      "type": 12
+    },
+    "META023": {
+      "groupId": 970302,
+      "nation": 97,
+      "type": 3
+    },
+    "META024": {
+      "groupId": 970103,
+      "nation": 97,
+      "type": 1
+    },
+    "META025": {
+      "groupId": 970205,
+      "nation": 97,
+      "type": 2
+    },
+    "META026": {
+      "groupId": 970603,
+      "nation": 97,
+      "type": 6
+    },
+    "META027": {
+      "groupId": 971301,
+      "nation": 97,
+      "type": 13
+    },
+    "META028": {
+      "groupId": 970206,
+      "nation": 97,
+      "type": 2
+    },
+    "META029": {
+      "groupId": 970104,
+      "nation": 97,
+      "type": 1
+    },
+    "META030": {
+      "groupId": 970207,
+      "nation": 97,
+      "type": 2
+    },
+    "META031": {
+      "groupId": 970505,
+      "nation": 97,
+      "type": 5
+    },
+    "META032": {
+      "groupId": 970105,
+      "nation": 97,
+      "type": 1
+    },
+    "META033": {
+      "groupId": 970704,
+      "nation": 97,
+      "type": 7
+    },
+    "META034": {
+      "groupId": 970303,
+      "nation": 97,
+      "type": 3
+    },
+    "META035": {
+      "groupId": 970304,
+      "nation": 97,
+      "type": 3
+    },
+    "META036": {
+      "groupId": 970106,
+      "nation": 97,
+      "type": 1
+    },
+    "META037": {
+      "groupId": 970506,
+      "nation": 97,
+      "type": 5
+    },
+    "META038": {
+      "groupId": 970405,
+      "nation": 97,
+      "type": 5
+    },
+    "META039": {
+      "groupId": 970604,
+      "nation": 97,
+      "type": 6
+    },
+    "META040": {
+      "groupId": 970507,
+      "nation": 97,
+      "type": 5
+    },
+    "META041": {
+      "groupId": 970705,
+      "nation": 97,
+      "type": 7
+    },
+    "META042": {
+      "groupId": 970305,
+      "nation": 97,
+      "type": 3
+    },
+    "META043": {
+      "groupId": 970306,
+      "nation": 97,
+      "type": 3
+    },
+    "META044": {
+      "groupId": 970508,
+      "nation": 97,
+      "type": 5
+    },
+    "META045": {
+      "groupId": 970706,
+      "nation": 97,
+      "type": 7
+    },
+    "META046": {
+      "groupId": 970509,
+      "nation": 97,
+      "type": 5
+    },
+    "META047": {
+      "groupId": 970107,
+      "nation": 97,
+      "type": 1
+    },
+    "META048": {
+      "groupId": 970707,
+      "nation": 97,
+      "type": 7
+    },
+    "META049": {
+      "groupId": 970108,
+      "nation": 97,
+      "type": 1
+    },
+    "META050": {
+      "groupId": 970406,
+      "nation": 97,
+      "type": 4
+    },
+    "META051": {
+      "groupId": 970109,
+      "nation": 97,
+      "type": 1
+    },
+    "META052": {
+      "groupId": 970110,
+      "nation": 97,
+      "type": 1
+    },
+    "META053": {
+      "groupId": 970208,
+      "nation": 97,
+      "type": 2
+    },
+    "META054": {
+      "groupId": 970708,
+      "nation": 97,
+      "type": 7
+    },
+    "META055": {
+      "groupId": 970209,
+      "nation": 97,
+      "type": 2
+    },
+    "META056": {
+      "groupId": 970111,
+      "nation": 97,
+      "type": 1
+    },
+    "META057": {
+      "groupId": 970510,
+      "nation": 97,
+      "type": 5
+    },
+    "META058": {
+      "groupId": 970211,
+      "nation": 97,
+      "type": 2
+    },
+    "META059": {
+      "groupId": 970210,
+      "nation": 97,
+      "type": 2
+    },
+    "META060": {
+      "groupId": 970212,
+      "nation": 97,
+      "type": 2
+    },
+    "META061": {
+      "groupId": 970605,
+      "nation": 97,
+      "type": 6
+    },
+    "META062": {
+      "groupId": 970112,
+      "nation": 97,
+      "type": 1
+    },
+    "META063": {
+      "groupId": 970213,
+      "nation": 97,
+      "type": 2
+    },
+    "META064": {
+      "groupId": 970710,
+      "nation": 97,
+      "type": 7
+    },
+    "META065": {
+      "groupId": 970709,
+      "nation": 97,
+      "type": 7
+    },
+    "META066": {
+      "groupId": 970113,
+      "nation": 97,
+      "type": 1
+    }
+  },
+  "research": [
+    {
+      "id": "Plan001",
+      "season": 1,
+      "stages": [
+        {
+          "taskId": 60012,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60015,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan002",
+      "season": 1,
+      "stages": [
+        {
+          "taskId": 60022,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60025,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan003",
+      "season": 1,
+      "stages": [
+        {
+          "taskId": 60032,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60035,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan004",
+      "season": 1,
+      "stages": [
+        {
+          "taskId": 60042,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60045,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan005",
+      "season": 1,
+      "stages": [
+        {
+          "taskId": 60052,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60055,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan006",
+      "season": 1,
+      "stages": [
+        {
+          "taskId": 60062,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60065,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan007",
+      "season": 2,
+      "stages": [
+        {
+          "taskId": 60072,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60075,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan008",
+      "season": 2,
+      "stages": [
+        {
+          "taskId": 60082,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60085,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan009",
+      "season": 2,
+      "stages": [
+        {
+          "taskId": 60092,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60095,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan010",
+      "season": 2,
+      "stages": [
+        {
+          "taskId": 60102,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60105,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan011",
+      "season": 2,
+      "stages": [
+        {
+          "taskId": 60112,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60115,
+          "exp": 2400000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan012",
+      "season": 2,
+      "stages": [
+        {
+          "taskId": 60122,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 8,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60125,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 8,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan013",
+      "season": 3,
+      "stages": [
+        {
+          "taskId": 60132,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60135,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan014",
+      "season": 3,
+      "stages": [
+        {
+          "taskId": 60142,
+          "exp": 1200000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60145,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan015",
+      "season": 3,
+      "stages": [
+        {
+          "taskId": 60152,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60155,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan016",
+      "season": 3,
+      "stages": [
+        {
+          "taskId": 60162,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60165,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan017",
+      "season": 3,
+      "stages": [
+        {
+          "taskId": 60172,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 8,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60175,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 8,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan018",
+      "season": 4,
+      "stages": [
+        {
+          "taskId": 60182,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60185,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan019",
+      "season": 4,
+      "stages": [
+        {
+          "taskId": 60192,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60195,
+          "exp": 2400000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan020",
+      "season": 4,
+      "stages": [
+        {
+          "taskId": 60202,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60205,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan021",
+      "season": 4,
+      "stages": [
+        {
+          "taskId": 60212,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60215,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan022",
+      "season": 4,
+      "stages": [
+        {
+          "taskId": 60222,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 6,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60225,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 6,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan023",
+      "season": 5,
+      "stages": [
+        {
+          "taskId": 60232,
+          "exp": 1200000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60235,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan024",
+      "season": 5,
+      "stages": [
+        {
+          "taskId": 60242,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60245,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan025",
+      "season": 5,
+      "stages": [
+        {
+          "taskId": 60252,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 5,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60255,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 5,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan026",
+      "season": 5,
+      "stages": [
+        {
+          "taskId": 60262,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 6,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 7,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60265,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 7,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan027",
+      "season": 5,
+      "stages": [
+        {
+          "taskId": 60272,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60275,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan028",
+      "season": 6,
+      "stages": [
+        {
+          "taskId": 60282,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60285,
+          "exp": 2400000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan029",
+      "season": 6,
+      "stages": [
+        {
+          "taskId": 60292,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60295,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan030",
+      "season": 6,
+      "stages": [
+        {
+          "taskId": 60302,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60305,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan031",
+      "season": 6,
+      "stages": [
+        {
+          "taskId": 60312,
+          "exp": 1200000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60315,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan032",
+      "season": 6,
+      "stages": [
+        {
+          "taskId": 60322,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60325,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan033",
+      "season": 7,
+      "stages": [
+        {
+          "taskId": 60332,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60335,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan034",
+      "season": 7,
+      "stages": [
+        {
+          "taskId": 60342,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60345,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan035",
+      "season": 7,
+      "stages": [
+        {
+          "taskId": 60352,
+          "exp": 1200000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 6,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 7,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60355,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 6,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 7,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan036",
+      "season": 7,
+      "stages": [
+        {
+          "taskId": 60362,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 6,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 7,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60365,
+          "exp": 2400000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 6,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            },
+            {
+              "nation": 7,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan037",
+      "season": 7,
+      "stages": [
+        {
+          "taskId": 60372,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60375,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan038",
+      "season": 8,
+      "stages": [
+        {
+          "taskId": 60382,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60385,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan039",
+      "season": 8,
+      "stages": [
+        {
+          "taskId": 60392,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60395,
+          "exp": 2400000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan040",
+      "season": 8,
+      "stages": [
+        {
+          "taskId": 60402,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 6,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60405,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 6,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan041",
+      "season": 8,
+      "stages": [
+        {
+          "taskId": 60412,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 7,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60415,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 7,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan042",
+      "season": 8,
+      "stages": [
+        {
+          "taskId": 60422,
+          "exp": 1200000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 11,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 6,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60425,
+          "exp": 2400000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 11,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 4,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 6,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan043",
+      "season": 9,
+      "stages": [
+        {
+          "taskId": 60432,
+          "exp": 1000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60435,
+          "exp": 2000000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan044",
+      "season": 9,
+      "stages": [
+        {
+          "taskId": 60442,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60445,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 3,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan045",
+      "season": 9,
+      "stages": [
+        {
+          "taskId": 60452,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60455,
+          "exp": 2400000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 4,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan046",
+      "season": 9,
+      "stages": [
+        {
+          "taskId": 60462,
+          "exp": 1000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60465,
+          "exp": 2000000,
+          "position": "vanguard",
+          "requirements": [
+            {
+              "nation": 8,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            },
+            {
+              "nation": 9,
+              "types": [
+                1,
+                2,
+                3,
+                18,
+                19,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Plan047",
+      "season": 9,
+      "stages": [
+        {
+          "taskId": 60472,
+          "exp": 1200000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 2,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "taskId": 60475,
+          "exp": 2400000,
+          "position": "main",
+          "requirements": [
+            {
+              "nation": 1,
+              "types": [
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                13,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
