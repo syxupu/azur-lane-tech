@@ -42,7 +42,7 @@ test('加成总数不随未拥有混淆，完成一艘对每个受益舰种各�
   for(const target of ['战巡','战列','航战']) assert.equal(summarize(ships,statuses,target,'炮击').done,2);
   statuses['072']='unowned';statuses['070']='done';
   const summary=summarize(ships,statuses,'航母','装填');
-  assert.deepEqual(summary,{total:29,done:1,pending:27,unowned:1,ships:27});
+  assert.deepEqual(summary,{total:29,done:1,pending:27,awakening:0,unowned:1,ships:27});
   assert.equal(counts(ships,statuses).done,2);
 });
 test('全部完成、全部未拥有及无匹配状态',()=>{
@@ -81,7 +81,7 @@ test('所有排序模式均先排列待练级、未拥有、已达120级，同�
 test('修改、批量修改、撤销与备份恢复后重新排序；未初始化记录视为待练级',()=>{
   const sample=ships.filter(s=>['070','072','076','079'].includes(s.id));
   const statuses={'070':'pending','072':'pending','076':'pending'};
-  const ids=record=>filterShips(sample,record,filter({})).map(s=>s.id);
+  const ids=record=>filterShips(sample,record,filter({sort:'id'})).map(s=>s.id);
   statuses['070']='done';
   assert.deepEqual(ids(statuses),['072','076','079','070']);
   statuses['072']='unowned';
@@ -101,6 +101,60 @@ test('备份往返不丢状态或未知ID；名单新增只补待练级',()=>{
   assert.equal(future.statuses['070'],'done');assert.equal(future.statuses.Future001,'done');
   assert.equal(future.statuses.Future002,'pending');assert.equal(future.added,1);
   const undo={...statuses};statuses['070']='pending';assert.equal(undo['070'],'done');
+});
+test('首次默认稀有度；明确指定的旧排序仍生效',()=>{
+  assert.equal(DEFAULT_FILTERS.sort,'rarity');
+  const sample=[ships.find(s=>s.id==='070'),ships.find(s=>s.id==='076')];
+  const statuses=reconcile(sample).statuses;
+  assert.deepEqual(filterShips(sample,statuses,filter({sort:'id'})).map(s=>s.id),['070','076']);
+  assert.deepEqual(filterShips(sample,statuses,filter({})).map(s=>s.id),['076','070']);
+});
+test('待觉醒独立筛选和计数，未计入120级奖励；达到120后才获得科技',()=>{
+  const sample=ships.filter(s=>['070','072','076','079'].includes(s.id));
+  const statuses={'070':'pending','072':'awakening','076':'unowned','079':'done'};
+  assert.deepEqual(counts(sample,statuses),{done:1,pending:1,awakening:1,unowned:1});
+  assert.deepEqual(filterShips(sample,statuses,filter({status:'awakening'})).map(s=>s.id),['072']);
+  const s=summarize(sample,statuses,'航母','装填');
+  assert.equal(s.awakening,1);
+  assert.equal(s.done,1);
+  assert.equal(s.total,s.pending+s.awakening+s.done+s.unowned);
+  statuses['072']='done';
+  assert.equal(summarize(sample,statuses,'航母','装填').done,2);
+  assert.equal(summarize(sample,statuses,'航母','装填').awakening,0);
+});
+test('四种排序下均先按待练级、待觉醒、未拥有、已完成分组',()=>{
+  const sample=ships.filter(s=>['070','072','076','079','142','226'].includes(s.id));
+  const statuses={'070':'done','072':'awakening','076':'pending','079':'unowned','142':'awakening','226':'done'};
+  for(const sort of ['id','name','bonus','rarity']) {
+    const result=filterShips(sample,statuses,filter({sort}));
+    assert.deepEqual(result.map(s=>statuses[s.id]),['pending','awakening','awakening','unowned','done','done']);
+  }
+});
+test('待觉醒备份使用v1兼容状态和可选ID列表；旧记录、新增船和未知ID无损往返',()=>{
+  const statuses={'070':'done','072':'awakening',Plan010:'unowned',Future001:'awakening'};
+  const original={...statuses};
+  const backup=JSON.parse(JSON.stringify(makeBackup(statuses)));
+  assert.equal(backup.version,1);
+  assert.deepEqual(backup.statuses,{'070':'done','072':'pending',Plan010:'unowned',Future001:'pending'});
+  assert.deepEqual(backup.awakening,['072','Future001']);
+  assert.ok(Object.values(backup.statuses).every(s=>['pending','unowned','done'].includes(s)));
+  assert.deepEqual(validateBackup(backup).statuses,original);
+  assert.deepEqual(statuses,original);
+  const updated=reconcile([{id:'070'},{id:'072'},{id:'New001'}],validateBackup(backup));
+  assert.equal(updated.statuses['072'],'awakening');
+  assert.equal(updated.statuses.Future001,'awakening');
+  assert.equal(updated.statuses.New001,'pending');
+  assert.equal(updated.added,1);
+  const legacy=makeBackup({'070':'done','072':'pending'});
+  assert.equal(Object.hasOwn(legacy,'awakening'),false);
+  assert.deepEqual(validateBackup(legacy).statuses,legacy.statuses);
+});
+test('非法或冲突的待觉醒备份在应用前拒绝',()=>{
+  const backup=makeBackup({'070':'done','072':'pending'});
+  for(const awakening of [null,{},'072',[72],['Missing001'],['070'],['072','072'],['<script>']]) {
+    assert.throws(()=>validateBackup({...backup,awakening}),/待觉醒记录/);
+  }
+  assert.deepEqual(validateBackup(backup).statuses,{'070':'done','072':'pending'});
 });
 test('10月22日五艘风帆舰奖励准确，旧存档更新仅新增五条待练记录',()=>{
   const expected=[
