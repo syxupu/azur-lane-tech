@@ -3,24 +3,30 @@ const isObject = value => value !== null && typeof value === 'object' && !Array.
 const RANK = { unowned: 0, pending: 1, awakening: 2, done: 3 };
 const normalizeName = name => name.normalize('NFKC').trim().replace(/\s+/g, '').replace(/[·・•．.]/g, '·').toLocaleLowerCase();
 
-export function validateFleetExport(input) {
-  if (!isObject(input) || input.format !== 'azurpilot-fleet-export' || input.version !== 1) {
+export function normalizeFleetExport(input) {
+  if (!isObject(input) || input.version !== 1) {
     throw new Error('请选择本工具的备份或 AzurPilot v1 船坞导出 JSON，原有记录未改变。');
   }
-  if (!Array.isArray(input.instances) || !input.instances.length || input.instances.length > 100) {
+  const kind = input.format === 'azurpilot-fleet-export' ? 'fleet' :
+    !Object.hasOwn(input, 'format') && !Object.hasOwn(input, 'app') && input.source === 'ledger' ? 'ledger' : null;
+  if (!kind) throw new Error('请选择本工具的备份或 AzurPilot v1 船坞导出 JSON，原有记录未改变。');
+  // A standalone ledger declares no confirmed-snapshot flag. Keep its origin
+  // explicit instead of manufacturing one to pass the full-fleet validation.
+  const instances = kind === 'fleet' ? input.instances : [{ instance: input.instance, ships: input.ships }];
+  if (!Array.isArray(instances) || !instances.length || instances.length > 100) {
     throw new Error('船坞导出缺少有效实例，原有记录未改变。');
   }
   let total = 0;
-  for (const instance of input.instances) {
+  for (const instance of instances) {
     if (!isObject(instance) || typeof instance.instance !== 'string' || !instance.instance.trim() || instance.instance.length > 200 ||
-        typeof instance.has_confirmed_snapshot !== 'boolean' || !Array.isArray(instance.ships)) {
+        (kind === 'fleet' && typeof instance.has_confirmed_snapshot !== 'boolean') || !Array.isArray(instance.ships)) {
       throw new Error('船坞实例格式不正确，原有记录未改变。');
     }
     total += instance.ships.length;
     for (const ship of instance.ships) {
       if (!isObject(ship) || typeof ship.name !== 'string' || ship.name.length > 200 || typeof ship.review !== 'boolean' ||
           !(ship.group_type == null || (Number.isSafeInteger(ship.group_type) && ship.group_type > 0)) ||
-          !(ship.level == null || (Number.isInteger(ship.level) && ship.level >= 1 && ship.level <= 125))) {
+          !(ship.level == null || (Number.isInteger(ship.level) && ship.level >= (ship.review ? 0 : 1) && ship.level <= 125))) {
         throw new Error('船坞舰船编号、等级或核对状态不正确，原有记录未改变。');
       }
     }
@@ -39,14 +45,19 @@ export function validateFleetExport(input) {
     }
     if (total > 50000) throw new Error('船坞导出记录过多，请分实例导出。');
   }
+  return { kind, instances };
+}
+
+export function validateFleetExport(input) {
+  normalizeFleetExport(input);
   return input;
 }
 
 export function previewFleetImport(input, instanceIndex, ships, current) {
-  validateFleetExport(input);
-  const instance = input.instances[instanceIndex];
+  const { kind, instances } = normalizeFleetExport(input);
+  const instance = instances[instanceIndex];
   if (!instance) throw new Error('请选择要导入的船坞实例。');
-  if (!instance.has_confirmed_snapshot) throw new Error('此实例还没有已确认快照，请先在 AzurPilot 核对并确认船坞。');
+  if (kind === 'fleet' && !instance.has_confirmed_snapshot) throw new Error('此实例还没有已确认快照，请先在 AzurPilot 核对并确认船坞。');
   const groups = new Map(), names = new Map();
   for (const ship of ships) {
     if (ship.gameGroupId) groups.set(String(ship.gameGroupId), ship.id);
