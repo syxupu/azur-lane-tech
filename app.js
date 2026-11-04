@@ -3,6 +3,7 @@ import { icon } from './ui-icons.js';
 import { normalizeTargets, addTarget, removeTarget, targetKey } from './targets.js';
 import { createListMotion } from './list-motion.js';
 import { DEFAULT_RESEARCH, normalizeResearch, researchStage, matchesResearch, describeStage } from './research.js';
+import { validateFleetExport, previewFleetImport } from './fleet-import.js';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -17,6 +18,7 @@ let selected = new Set(), previous = null, importData = null, filtered = [], rea
 let toastTimer, announceTimer;
 let userTargets = [], hullIcons = {};
 let gameRules = { ships: {}, research: [] }, research = { ...DEFAULT_RESEARCH };
+let fleetImport = null, backupImport = null, importFilename = '';
 
 function isResearchMatch(ship) {
   return matchesResearch(ship, researchStage(research, gameRules.research), gameRules.ships, research.missileMode, research.shipId);
@@ -407,21 +409,65 @@ for (const dialog of document.querySelectorAll('dialog')) dialog.addEventListene
 });
 $('export').addEventListener('click', exportBackup);
 $('import').addEventListener('click', () => { if (ready) $('import-file').click(); });
+function renderImportPreview() {
+  importData = null;
+  $('apply-import').disabled = true;
+  try {
+    let details;
+    if (fleetImport) {
+      const index = $('import-instance').value;
+      if (index === '') {
+        $('import-preview').textContent = '请选择一个实例预览。不同实例的舰船记录不会合并。';
+        return;
+      }
+      const result = previewFleetImport(fleetImport, Number(index), ships, statuses);
+      importData = { statuses: result.statuses };
+      const r = result.report;
+      details = `<p>匹配 ${r.matched} 艘科技舰船，更新 ${r.changed} 艘。跳过 ${r.reviewed} 条待核对舰船、${r.unmatchedShips} 条未匹配舰船及 ${r.unmatchedTechnology} 条未匹配科技记录。${r.duplicates ? `${r.duplicates} 条重复舰船按最高进度合并。` : ''}</p><p>仅读取已确认快照，忽略待确认变更。优先按舰船组编号匹配，无编号时使用唯一舰名或和谐名；不推断额外经验。</p>${!r.matched ? '<p>没有可导入的科技舰船，请核对文件与本工具名单。</p>' : !r.changed ? '<p>当前记录已包含全部可合并进度，无需重复导入。</p>' : ''}`;
+      $('apply-import').disabled = r.matched === 0 || r.changed === 0;
+    } else {
+      importData = backupImport;
+      const merged = reconcile(ships, importData);
+      const known = new Set(ships.map(s => s.id)), unknown = Object.keys(importData.statuses).filter(id => !known.has(id)).length;
+      details = `<p>未包含的 ${merged.added} 艘将设为待练级。${unknown ? `另保留 ${unknown} 条未知舰船记录，等待名单更新匹配。` : ''}</p>`;
+      $('apply-import').disabled = false;
+    }
+    const c = counts(ships, reconcile(ships, importData).statuses);
+    $('import-preview').innerHTML = `<strong>${esc(importFilename)}</strong><p>应用后的练级记录</p><div class="import-counts"><span>已达120级<b>${c.done}</b></span><span>待练级<b>${c.pending}</b></span><span>待觉醒<b>${c.awakening}</b></span><span>未拥有<b>${c.unowned}</b></span></div>${details}`;
+  } catch (error) {
+    $('import-preview').textContent = error.message;
+  }
+}
+$('import-instance').addEventListener('change', renderImportPreview);
+$('import-dialog').addEventListener('close', () => {
+  importData = null; fleetImport = null; backupImport = null;
+  $('import').focus();
+});
 $('import-file').addEventListener('change', async () => {
   const file = $('import-file').files[0]; $('import-file').value = ''; if (!file) return;
+  importData = null; fleetImport = null; backupImport = null;
+  $('import').disabled = true;
   try {
-    if (file.size > 2*1024*1024) throw new Error('备份文件过大，请选择本工具导出的JSON文件。');
-    importData = validateBackup(JSON.parse(await file.text()));
-    const merged = reconcile(ships,importData), c = counts(ships,merged.statuses);
-    const known = new Set(ships.map(s=>s.id)), unknown = Object.keys(importData.statuses).filter(id=>!known.has(id)).length;
-    $('import-preview').innerHTML = `<strong>${esc(file.name)}</strong><div class="import-counts"><span>已达120级<b>${c.done}</b></span><span>待练级<b>${c.pending}</b></span><span>待觉醒<b>${c.awakening}</b></span><span>未拥有<b>${c.unowned}</b></span></div><p>未包含的 ${merged.added} 艘将设为待练级。${unknown ? `另保留 ${unknown} 条未知舰船记录，等待名单更新匹配。` : ''}</p>`;
+    if (file.size > 10*1024*1024) throw new Error('JSON 文件超过 10 MiB，请分实例导出后重试。');
+    const input = JSON.parse((await file.text()).replace(/^\uFEFF/, ''));
+    importFilename = file.name;
+    if (input?.format === 'azurpilot-fleet-export') fleetImport = validateFleetExport(input);
+    else backupImport = validateBackup(input);
+    $('import-instance-label').hidden = !fleetImport;
+    $('import-title').textContent = fleetImport ? '导入 AzurPilot 船坞' : '恢复港区档案';
+    $('import-description').textContent = fleetImport ? '仅合并匹配舰船的更高进度，保留已有完成和待觉醒记录。未扫描到的舰船保持原状；应用前请核对预览。' : '导入将替换当前练级记录，建议先导出当前备份。';
+    $('apply-import').textContent = fleetImport ? '合并船坞记录' : '应用备份';
+    $('import-instance').innerHTML = fleetImport ? `${fleetImport.instances.length > 1 ? '<option value="">请选择实例</option>' : ''}${fleetImport.instances.map((instance, index) => `<option value="${index}">${esc(instance.instance)}${instance.has_confirmed_snapshot ? '' : '（尚未确认）'}</option>`).join('')}` : '';
+    renderImportPreview();
     $('import-dialog').showModal();
   } catch (error) { importData = null; toast(error instanceof SyntaxError ? '文件不是有效JSON，原有记录未改变。' : error.message, true); }
+  finally { $('import').disabled = false; }
 });
 $('apply-import').addEventListener('click', () => {
-  if (!importData) return;
+  if (!importData || $('apply-import').disabled) return;
+  const isFleet = Boolean(fleetImport);
   previous = {...statuses}; statuses = reconcile(ships,importData).statuses; importData = null; selected.clear();
-  saveProgress(); render(); $('import-dialog').close(); $('import').focus(); toast('备份已恢复，可撤销本次导入。');
+  saveProgress(); render(); $('import-dialog').close(); $('import').focus(); toast(isFleet ? '船坞记录已合并，可撤销本次导入。' : '备份已恢复，可撤销本次导入。');
 });
 
 async function init() {
