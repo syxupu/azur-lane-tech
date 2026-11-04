@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { validateFleetExport, previewFleetImport } from '../fleet-import.js';
+import { normalizeFleetExport, validateFleetExport, previewFleetImport } from '../fleet-import.js';
 import { makeBackup, validateBackup } from '../core.js';
 
 const ships = [
@@ -14,6 +13,7 @@ const row = patch => ({ id: 1, group_type: 10101, name: '扫描舰名', level: 1
 const tech = patch => ({ owned: true, lv120: false, awakening_pending: false, ...patch });
 const instance = patch => ({ instance: 'test', has_confirmed_snapshot: true, ships: [], ...patch });
 const fleet = (...instances) => ({ format: 'azurpilot-fleet-export', version: 1, instances });
+const ledger = patch => ({ version: 1, source: 'ledger', instance: 'test', ships: [], ...patch });
 const current = () => ({ '001': 'pending', Plan001: 'pending', META001: 'pending', '002': 'pending', Future001: 'done' });
 
 test('组编号映射科技ID，不使用扫描行ID；重复舰按最高等级合并', () => {
@@ -91,4 +91,70 @@ test('不支持的格式、损坏结构和无效状态在写入前拒绝', () =>
     fleet(instance({ technology: { progress: [] } })), fleet(instance({ technology: { progress: { '10101': tech({ lv120: 1 }) } } })),
     fleet(instance({ technology: { progress: { '<script>': tech() } } })),
   ]) assert.throws(() => validateFleetExport(input));
+});
+
+test('正式单实例列表与完整船坞共用匹配和合并，不伪造已确认快照声明', () => {
+  const rows = [row({ level: 119 }), row({ id: 2, level: 125 }), row({ group_type: 19901, level: 120 })];
+  const input = ledger({ ships: rows }), before = structuredClone(input);
+  const normalized = normalizeFleetExport(input);
+  assert.equal(normalized.kind, 'ledger');
+  assert.equal(normalized.instances[0].instance, 'test');
+  assert.equal(Object.hasOwn(normalized.instances[0], 'has_confirmed_snapshot'), false);
+  assert.equal(validateFleetExport(input), input);
+  assert.deepEqual(previewFleetImport(input, 0, ships, current()), previewFleetImport(fleet(instance({ ships: rows })), 0, ships, current()));
+  assert.deepEqual(input, before);
+  assert.throws(() => previewFleetImport(input, 1, ships, current()), /实例/);
+});
+
+test('单实例只读取正式ships，待确认新增、修改、扫描和附带科技均不影响结果', () => {
+  const input = ledger({ ships: [row({ level: 100 }), row({ group_type: 19901, review: true, level: 125 })],
+    pending_changes: [
+      { operation: 'update', after: row({ level: 125 }) },
+      { operation: 'add', after: row({ group_type: 970101, level: 125 }) },
+      { operation: 'add', after: row({ level: 0, review: true }) },
+    ],
+    pending_read: { complete: false, ships: [row({ level: 125 })] },
+    technology: { progress: { '10101': tech({ lv120: true, awakening_pending: true }) } },
+  });
+  const result = previewFleetImport(input, 0, ships, current());
+  assert.deepEqual(result.statuses, current());
+  assert.equal(result.report.matched, 1);
+  assert.equal(result.report.reviewed, 1);
+  assert.equal(result.report.changed, 0);
+});
+
+test('正式列表未完成或按等级截取时仍保留已有进度，重复导入没有额外修改', () => {
+  const before = { ...current(), '001': 'awakening', Plan001: 'done', META001: 'unowned' };
+  const input = ledger({ complete: false, min_level: 120, max_level: 125, ships: [row({ level: 120 })] });
+  const result = previewFleetImport(input, 0, ships, before);
+  assert.equal(result.statuses['001'], 'done');
+  assert.equal(result.statuses.Plan001, 'done');
+  assert.equal(result.statuses.META001, 'unowned');
+  assert.equal(result.statuses.Future001, 'done');
+  assert.deepEqual(validateBackup(makeBackup(result.statuses)).statuses, result.statuses);
+  assert.equal(previewFleetImport(input, 0, ships, result.statuses).report.changed, 0);
+});
+
+test('正式列表拒绝不支持版本、错误来源和非法舰船字段', () => {
+  for (const input of [ledger({ version: 2 }), ledger({ source: 'scan' }), ledger({ instance: '' }),
+    ledger({ ships: {} }), ledger({ ships: [row({ level: 126 })] }), ledger({ ships: [row({ level: '120' })] }),
+    ledger({ ships: [row({ review: null })] }), ledger({ ships: [row({ group_type: '10101' })] }),
+    ledger({ format: 'unknown' }), ledger({ app: 'azur-tech-checklist' }),
+  ]) assert.throws(() => normalizeFleetExport(input));
+});
+
+test('完整船坞的确认校验不能通过附带ledger字段绕过', () => {
+  const input = { ...fleet(instance({ has_confirmed_snapshot: false, ships: [row({ level: 125 })] })),
+    source: 'ledger', instance: 'test', ships: [row({ level: 125 })] };
+  assert.equal(normalizeFleetExport(input).kind, 'fleet');
+  assert.throws(() => previewFleetImport(input, 0, ships, current()), /确认/);
+});
+
+test('等级0的待核对占位记录可跳过，不阻止正式舰船导入；已核对记录仍须有效等级', () => {
+  const input = ledger({ ships: [row({ level: 120 }), row({ group_type: null, name: '待核对舰船', review: true, level: 0 })] });
+  const result = previewFleetImport(input, 0, ships, current());
+  assert.equal(result.statuses['001'], 'done');
+  assert.equal(result.report.reviewed, 1);
+  assert.equal(result.report.matched, 1);
+  assert.throws(() => normalizeFleetExport(ledger({ ships: [row({ review: false, level: 0 })] })), /等级/);
 });
