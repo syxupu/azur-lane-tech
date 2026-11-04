@@ -430,6 +430,9 @@ dialog::backdrop { background: var(--backdrop); backdrop-filter: blur(4px); }
 .import-preview { padding: 16px 20px; border: 1px solid var(--border); background: var(--surface-raised); border-radius: 10px; font-size: 14px; }
 .import-preview p { margin: 6px 0; }
 .import-preview > strong { display: block; overflow-wrap: anywhere; font-weight: 600; }
+.import-instance-label { display: grid; gap: 8px; margin: 16px 0; font-size: 14px; color: var(--muted); }
+.import-instance-label select { width: 100%; min-width: 0; }
+.import-preview { overflow-wrap: anywhere; }
 .import-counts { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; color: var(--muted); font-size: 12px; }
 .import-counts b { display: block; color: var(--text); font-size: 22px; font-weight: 600; }
 .help-steps { counter-reset: help; padding: 0; list-style: none; margin: 24px 0; }
